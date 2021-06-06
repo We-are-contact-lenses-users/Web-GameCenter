@@ -45,11 +45,11 @@ export default {
     };
   },
   computed: {
-    styleObject: function() {
+    styleObject: function () {
       let width = 20 * this.current_question_counts + "%";
       let color = "orange";
       if (this.current_question_counts == 5) {
-        let color = "#03a9f4";
+        color = "#03a9f4";
       }
       return {
         width: width,
@@ -58,10 +58,10 @@ export default {
     },
   },
   methods: {
-    gameStart: function() {
+    gameStart: function () {
       this.startFlg = true;
       this.startTime = performance.now();
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         document.getElementById("typeForm").focus();
       });
     },
@@ -84,12 +84,12 @@ export default {
       }
     },
   },
-  mounted: function() {
+  mounted: function () {
     this.current_question = this.questions[0];
     this.question_counts = this.questions.length;
   },
   watch: {
-    typeBox: function(e) {
+    typeBox: function (e) {
       if (e == this.current_question) {
         this.questions.splice(0, 1);
         this.current_question = this.questions[0];
