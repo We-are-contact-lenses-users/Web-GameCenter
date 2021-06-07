@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import Home from "@/components/PinBallComponents/PinballHome.vue";
-import IsPlaying from "@/components/PinBallComponents/PinballIsPlaying.vue";
-import Final from "@/components/PinBallComponents/PinballFinal.vue";
+import Home from "@/components/PinBallComponents/Home.vue";
+import IsPlaying from "@/components/PinBallComponents/IsPlaying.vue";
+import Final from "@/components/PinBallComponents/Final.vue";
 // import firebase from "firebase";
 
 export default {

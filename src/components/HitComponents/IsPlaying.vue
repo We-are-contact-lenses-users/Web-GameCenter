@@ -1,15 +1,13 @@
 <template>
   <div class="backDisplay">
     <back id="canvas1"></back>
-    <h1 class="item item2">Result</h1>
-    <h1 class="item item3">0点</h1>
-    <div @click="next" class="item item4">Home</div>
-    <div @click="again" class="item item5">Again</div>
+    <h1 class="item item2">IsPlaying</h1>
+    <div @click="next" class="item item3">Result</div>
   </div>
 </template>
 
 <script>
-import back from "./Hit_BackDisplay.vue";
+import back from "./BackDisplay.vue";
 export default {
   components: {
     back,
@@ -17,9 +15,6 @@ export default {
   methods: {
     next() {
       this.$emit("next");
-    },
-    again() {
-      this.$emit("again");
     },
   },
 };
@@ -39,22 +34,14 @@ export default {
   right: 0;
   color: white;
 }
+
 .item3 {
-  top: 40%;
+  top: calc(70% - 50px);
   left: 0;
   right: 0;
-  color: white;
 }
-.item4 {
-  top: calc(70% - 50px);
-  left: 30%;
-}
-.item5 {
-  top: calc(70% - 50px);
-  right: 30%;
-}
-.item4,
-.item5 {
+
+.item3 {
   display: inline-block;
   width: 100px;
   background: transparent;
@@ -67,8 +54,7 @@ export default {
   transition: opacity scale();
   transition-duration: 1s;
 }
-.item4:hover,
-.item5:hover {
+.item3:hover {
   opacity: 1;
   transform: scale(1.4);
 }
