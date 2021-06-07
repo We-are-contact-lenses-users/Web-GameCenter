@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import clock from "./Puzzle-Clock.vue";
+import clock from "./Clock.vue";
 
 export default {
   components: {

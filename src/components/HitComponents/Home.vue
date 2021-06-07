@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import back from "./Hit_BackDisplay.vue";
+import back from "./BackDisplay.vue";
 export default {
   components: {
     back,

@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import TypingGame from "../views/Typing.vue";
 import PuzzleGame from "../views/Puzzle.vue";
 import PinBallGame from "../views/PinBall.vue";
+import HitGame from "../views/Hit.vue";
 
 Vue.use(VueRouter);
 
@@ -21,6 +22,11 @@ const routes = [
     path: "/pinballgame",
     name: "PinballGame",
     component: PinBallGame,
+  },
+  {
+    path: "/hitgame",
+    name: "HitGame",
+    component: HitGame,
   },
 ];
 

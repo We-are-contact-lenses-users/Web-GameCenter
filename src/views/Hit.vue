@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import Home from "./components/HitHome.vue";
-import IsPlaying from "./components/HitIsPlaying.vue";
-import Result from "./components/HitResult.vue";
+import Home from "@/components/HitComponents/Home.vue";
+import IsPlaying from "@/components/HitComponents/IsPlaying.vue";
+import Result from "@/components/HitComponents/Result.vue";
 
 export default {
   data() {

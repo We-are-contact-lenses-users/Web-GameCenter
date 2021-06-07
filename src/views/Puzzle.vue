@@ -13,9 +13,9 @@
 </template>
 
 <script>
-import home from "@/components/PuzzleComponents/Puzzle-Home.vue";
-import firstGame from "@/components/PuzzleComponents/Puzzle-IsPlaying.vue";
-import result from "@/components/PuzzleComponents/Puzzle-Result.vue";
+import home from "@/components/PuzzleComponents/Home.vue";
+import firstGame from "@/components/PuzzleComponents/IsPlaying.vue";
+import result from "@/components/PuzzleComponents/Result.vue";
 
 export default {
   components: {
