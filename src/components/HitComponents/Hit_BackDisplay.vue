@@ -1,5 +1,5 @@
 <template>
-    <canvas class="item item1" id="canvas1"></canvas>
+  <canvas class="item item1" id="canvas1"></canvas>
 </template>
 
 <script>
@@ -40,16 +40,10 @@ export default {
     },
     DisplayMainTopic(ctx) {
       ctx.beginPath();
-      ctx.arc(
-        60,
-        60,
-        40,
-        (0 / 180) * Math.PI,
-        (360 / 180) * Math.PI
-      );
+      ctx.arc(60, 60, 40, (0 / 180) * Math.PI, (360 / 180) * Math.PI);
       ctx.stroke();
       ctx.fill();
-    }
+    },
   },
   mounted() {
     // 背景
@@ -72,9 +66,9 @@ export default {
         }
         this.makeCircle(ctx1);
       }
-    }    
+    }
   },
-}
+};
 </script>
 
 <style scoped>

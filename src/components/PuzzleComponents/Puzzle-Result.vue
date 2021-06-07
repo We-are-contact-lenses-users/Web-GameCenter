@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Result</h1>
-    <h2 class="animate__animated animate__fadeInUp">記録    {{beforeTime}}</h2>
+    <h2 class="animate__animated animate__fadeInUp">記録 {{ beforeTime }}</h2>
     <button v-button @click="next">Back to Start Display</button>
     <button v-button @click="nextGame">Again</button>
   </div>
@@ -9,23 +9,23 @@
 
 <script>
 export default {
-  props: ['beforeTime'],
+  props: ["beforeTime"],
   methods: {
     next() {
-      this.$emit('toStart')
+      this.$emit("toStart");
     },
     nextGame() {
-      this.$emit('Again')
-    }
-  }
-}
+      this.$emit("Again");
+    },
+  },
+};
 </script>
 
 <style scoped>
 * {
   text-align: center;
   margin: 0 auto;
-  font-family: 'Squada One', cursive;
+  font-family: "Squada One", cursive;
   letter-spacing: 2px;
 }
 body {

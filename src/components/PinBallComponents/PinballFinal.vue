@@ -1,7 +1,10 @@
 <template>
   <div class="box">
     <BlockBack />
-    <h1>最終結果 <br> {{point}}pt</h1>
+    <h1>
+      最終結果 <br />
+      {{ point }}pt
+    </h1>
     <div class="buttonBox">
       <button @click="playAgain">もう一度遊ぶ</button>
       <button @click="back">もとに戻る</button>
@@ -15,7 +18,7 @@ export default {
   components: {
     BlockBack,
   },
-  props: ['point'],
+  props: ["point"],
   methods: {
     back() {
       this.$emit("next");
@@ -45,7 +48,8 @@ export default {
   left: 0;
   right: 0;
 }
-h1, button{
+h1,
+button {
   display: inline-block;
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.6);
@@ -78,7 +82,7 @@ button:active {
   box-shadow: none;
   transform: translateY(3px);
 }
-@media(max-width: 700px) {
+@media (max-width: 700px) {
   .buttonBox {
     flex-direction: column;
   }
@@ -87,4 +91,3 @@ button:active {
   }
 }
 </style>
-

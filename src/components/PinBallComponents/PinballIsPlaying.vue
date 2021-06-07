@@ -44,7 +44,7 @@ export default {
   methods: {
     finish() {
       this.isFinish = !this.isFinish;
-      this.$emit('record')
+      this.$emit("record");
     },
     next() {
       this.$emit("next");
@@ -52,8 +52,8 @@ export default {
   },
   mounted() {
     window.addEventListener("keydown", (e) => {
-      if(this.isStart) {
-        return
+      if (this.isStart) {
+        return;
       }
       if (e.key === "Enter") {
         this.isStart = !this.isStart;

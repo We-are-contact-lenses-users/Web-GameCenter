@@ -2,24 +2,24 @@
   <div class="descriptionBox">
     <h1>ランキング上位</h1>
     <table v-if="recordAll.length !== 0" class="result">
-        <tr v-for="(record, index) in recordAll" :key="index">
-          <td>第 {{1 + index}} 位</td>
-          <td>{{ record }} pt</td>
-        </tr>
-      </table>
-    <button @click="active" >戻る</button>
+      <tr v-for="(record, index) in recordAll" :key="index">
+        <td>第 {{ 1 + index }} 位</td>
+        <td>{{ record }} pt</td>
+      </tr>
+    </table>
+    <button @click="active">戻る</button>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['recordAll'],
+  props: ["recordAll"],
   methods: {
     active() {
-      this.$emit('back')
-    }
-  }
-}
+      this.$emit("back");
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -68,4 +68,3 @@ button:active {
   transform: translateY(2px);
 }
 </style>
-

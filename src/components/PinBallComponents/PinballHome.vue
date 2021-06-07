@@ -16,7 +16,11 @@
       <description @back="changeDescription" v-if="description"></description>
     </transition>
     <transition tag="template" name="fade">
-      <result @back="changeResult" :recordAll="recordAll" v-if="result"></result>
+      <result
+        @back="changeResult"
+        :recordAll="recordAll"
+        v-if="result"
+      ></result>
     </transition>
     <BlockBack />
   </div>
@@ -25,14 +29,15 @@
 <script>
 import BlockBack from "./Pinball_BlockBack.vue";
 import description from "./Pinball_Description.vue";
-import result from "./_Result.vue";
+// import result from "./Pinball_Result.vue";
+import result from "./Pinball_Result.vue";
 export default {
   components: {
     BlockBack,
     description,
-    result
+    result,
   },
-  props: ['recordAll'],
+  props: ["recordAll"],
   data() {
     return {
       description: false,
@@ -42,14 +47,14 @@ export default {
   methods: {
     changeDescription() {
       this.description = !this.description;
-      console.log(this.description)
+      console.log(this.description);
     },
     changeResult() {
       this.result = !this.result;
     },
     start() {
-      this.$emit('next')
-    }
+      this.$emit("next");
+    },
   },
 };
 </script>

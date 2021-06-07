@@ -13,9 +13,9 @@
 </template>
 
 <script>
-import home from "./components/Puzzle-Home.vue";
-import firstGame from "./components/Puzzle-IsPlaying.vue";
-import result from "./components/Puzzle-Result.vue";
+import home from "@/components/PuzzleComponents/Puzzle-Home.vue";
+import firstGame from "@/components/PuzzleComponents/Puzzle-IsPlaying.vue";
+import result from "@/components/PuzzleComponents/Puzzle-Result.vue";
 
 export default {
   components: {
@@ -31,16 +31,12 @@ export default {
       beforeTime: 0,
       recordAll: [],
       currentNumber: 0,
-      componentName: [
-        "home",
-        "firstGame",
-        "result",
-      ],
+      componentName: ["home", "firstGame", "result"],
     };
   },
   methods: {
     back() {
-      this.currentNumber = 0
+      this.currentNumber = 0;
     },
     next() {
       this.currentNumber++;
@@ -72,9 +68,9 @@ export default {
         month: new Date().getMonth() + 1,
         date: new Date().getDate(),
         record: this.beforeTime,
-      })
-      if(this.recordAll.length === 6) {
-        this.recordAll.splice(0,1)
+      });
+      if (this.recordAll.length === 6) {
+        this.recordAll.splice(0, 1);
       }
     },
   },
@@ -101,7 +97,7 @@ export default {
 * {
   text-align: center;
   margin: 0 auto;
-  font-family: 'Squada One', cursive;
+  font-family: "Squada One", cursive;
   letter-spacing: 2px;
 }
 body {

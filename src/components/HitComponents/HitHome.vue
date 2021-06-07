@@ -19,7 +19,6 @@ export default {
       this.$emit("next");
     },
   },
-
 };
 </script>
 
