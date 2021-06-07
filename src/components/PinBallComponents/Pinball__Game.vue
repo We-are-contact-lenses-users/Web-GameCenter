@@ -254,28 +254,24 @@ export default {
             Math.pow(this.ball.y - this.pin[i].y, 2) <=
           Math.pow(this.ball.r + this.pin[i].r, 2)
         ) {
-          if (
-            Math.abs(this.ball.x - this.pin[i].x) >= this.pin[i].r
-          ) {
-            if(this.ball.x < this.pin[i].x && this.ball.dx > 0) {
-              this.ball.dx -= 2
+          if (Math.abs(this.ball.x - this.pin[i].x) >= this.pin[i].r) {
+            if (this.ball.x < this.pin[i].x && this.ball.dx > 0) {
+              this.ball.dx -= 2;
               this.ball.dx *= -1;
             }
-            if(this.ball.x > this.pin[i].x && this.ball.dx < 0) {
-              this.ball.dx += 2
+            if (this.ball.x > this.pin[i].x && this.ball.dx < 0) {
+              this.ball.dx += 2;
               this.ball.dx *= -1;
             }
-          } 
-          if (
-            Math.abs(this.ball.y - this.pin[i].y) >= this.pin[i].r
-          ) {
-            if(this.ball.y < this.pin[i].y && this.ball.dy > 0) {
+          }
+          if (Math.abs(this.ball.y - this.pin[i].y) >= this.pin[i].r) {
+            if (this.ball.y < this.pin[i].y && this.ball.dy > 0) {
               this.ball.dy *= -1;
             }
-            if(this.ball.y > this.pin[i].y && this.ball.dy < 0) {
+            if (this.ball.y > this.pin[i].y && this.ball.dy < 0) {
               this.ball.dy *= -1;
             }
-          } 
+          }
         }
       }
     },
@@ -323,8 +319,8 @@ export default {
         this.$emit("plus30");
       }
       if (this.ball.x > 300 && this.ball.x <= 400) {
-        for(let i = 6; i < this.pin.length; i++) {
-          this.pin[i].r++
+        for (let i = 6; i < this.pin.length; i++) {
+          this.pin[i].r++;
         }
         this.$emit("plusRandom");
       }
@@ -363,7 +359,7 @@ export default {
   },
   watch: {
     bar: {
-      handler: function() {
+      handler: function () {
         let canvas = document.getElementById("mycanvas");
         let ctx = canvas.getContext("2d");
         this.reset(ctx);

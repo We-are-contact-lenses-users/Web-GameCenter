@@ -20,10 +20,10 @@
 </template>
 
 <script>
-import Home from "./components/PinballHome.vue";
-import IsPlaying from "./components/PinballIsPlaying.vue";
-import Final from "./components/PinballFinal.vue";
-import firebase from "firebase";
+import Home from "@/components/PinBallComponents/PinballHome.vue";
+import IsPlaying from "@/components/PinBallComponents/PinballIsPlaying.vue";
+import Final from "@/components/PinBallComponents/PinballFinal.vue";
+// import firebase from "firebase";
 
 export default {
   data() {
@@ -140,22 +140,22 @@ export default {
       //     }
       //   }
       // } else {
-        for (let i = 0; i < this.recordAll.length; i++) {
-          if (i === 0 && this.recordAll[i] <= this.point) {
-            this.recordAll.unshift(this.point);
-            this.recordAll.pop();
-            // this.DisplayResult();
-            return;
-          }
-          if (this.recordAll[i] <= this.point) {
-            this.recordAll.pop();
-            this.recordAll.splice(i, 0, this.point);
-            // this.DisplayResult();
-            return;
-          }
+      for (let i = 0; i < this.recordAll.length; i++) {
+        if (i === 0 && this.recordAll[i] <= this.point) {
+          this.recordAll.unshift(this.point);
+          this.recordAll.pop();
+          // this.DisplayResult();
+          return;
+        }
+        if (this.recordAll[i] <= this.point) {
+          this.recordAll.pop();
+          this.recordAll.splice(i, 0, this.point);
+          // this.DisplayResult();
+          return;
         }
       }
     },
+  },
   // },
 };
 </script>

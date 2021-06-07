@@ -20,17 +20,16 @@ export default {
         "SaddleBrown",
         "RosyBrown",
         "SandyBrown",
-      ]
-    }
+      ],
+    };
   },
   methods: {
     randomNumber() {
-      return Math.floor(Math.random() * 6)
-    }
-  }
-}
+      return Math.floor(Math.random() * 6);
+    },
+  },
+};
 </script>
-
 
 <style scoped>
 .flex {
@@ -59,7 +58,7 @@ export default {
 .backgroundBlock:nth-child(5n) {
   width: 7%;
 }
-.backgroundBlock:nth-child(5n+1) {
+.backgroundBlock:nth-child(5n + 1) {
   flex: 1;
 }
 .backgroundBlock:nth-child(6n) {

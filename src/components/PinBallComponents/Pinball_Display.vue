@@ -13,9 +13,14 @@
       <h3 v-if="currentPlusPoint !== 0" class="side-menu-item item1">
         {{ currentPlusPoint }}pt!
       </h3>
-      <p class="side-menu-item hit-count" v-if="collideCount !== 0">{{collideCount}} hit!</p>
-      <div v-if="collideCount % 5 === 0 && this.collideCount !== 0" class="side-menu-item bonus">
-        <p>{{collideCount}}連チャン！</p>
+      <p class="side-menu-item hit-count" v-if="collideCount !== 0">
+        {{ collideCount }} hit!
+      </p>
+      <div
+        v-if="collideCount % 5 === 0 && this.collideCount !== 0"
+        class="side-menu-item bonus"
+      >
+        <p>{{ collideCount }}連チャン！</p>
         <p>ボーナス</p>
         <p>{{ bonusPoint }}pt</p>
       </div>

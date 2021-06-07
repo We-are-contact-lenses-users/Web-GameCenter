@@ -18,12 +18,11 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 * {
   text-align: center;
   margin: 0 auto;
-  font-family: 'Squada One', cursive;
+  font-family: "Squada One", cursive;
   letter-spacing: 2px;
 }
 body {

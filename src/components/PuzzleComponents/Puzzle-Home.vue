@@ -1,14 +1,12 @@
 <template>
   <div>
     <div
-      :class="{ blackBack: isActive, blackBack2: isActive2,}"
+      :class="{ blackBack: isActive, blackBack2: isActive2 }"
       class="blackBackBase"
     >
       <clock class="clock" :class="{ display: isActive3 }"></clock>
       <div class="box">
-        <h1 class="animate__animated animate__lightSpeedInLeft">
-          Time Attack
-        </h1>
+        <h1 class="animate__animated animate__lightSpeedInLeft">Time Attack</h1>
         <table>
           <tr>
             <td>前回の記録</td>
@@ -26,7 +24,7 @@
     <div :class="{ whiteBox1: isActive }" class="whiteBoxBase1">
       <div class="container">
         <div class="flex-item">
-          <img src="../assets/キャプチャ.gif" />
+          <img src="@/assets/キャプチャ.gif" />
         </div>
         <p class="flex-item">
           このゲームは3×3のパズルゲームです。<br />Game Start
@@ -58,7 +56,7 @@
 </template>
 
 <script>
-import clock from "./Pazzle-Clock.vue";
+import clock from "./Puzzle-Clock.vue";
 
 export default {
   components: {
@@ -92,7 +90,7 @@ export default {
 * {
   text-align: center;
   margin: 0 auto;
-  font-family: 'Squada One', cursive;
+  font-family: "Squada One", cursive;
   letter-spacing: 2px;
 }
 h1 {
