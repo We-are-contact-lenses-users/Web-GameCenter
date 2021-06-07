@@ -2,11 +2,12 @@
   <div id="app">
     <div class="container">
       <div class="title">
-        <h1>Typing Game</h1>
+        <h1 v-if="!startFlg && endFlg == true">結果発表</h1>
+        <h1 v-else>Typing Game</h1>
         <div class="marker"></div>
       </div>
       <button
-        v-if="startFlg != true"
+        v-if="!startFlg && !endFlg"
         class="startButton mb-20"
         @click="gameStart"
       >
@@ -15,7 +16,8 @@
       <div v-if="startFlg">
         <div class="question mb-20">{{ current_question }}</div>
         <div v-if="current_question_counts == question_counts" class="clear">
-          Clear!
+          <div>Clear!</div>
+          <button @click="gameResult">結果発表</button>
         </div>
         <div class="typeFormWrapper mb-20">
           <input id="typeForm" v-model="typeBox" type="text" class="typeForm" />
@@ -24,6 +26,9 @@
           <div v-bind:style="styleObject" class="gauge"></div>
         </div>
         <div>{{ current_question_counts }}/{{ question_counts }}</div>
+      </div>
+      <div v-if="!startFlg && endFlg == true">
+        ただいまの結果は{{ second }}秒でした！
       </div>
     </div>
   </div>
@@ -37,11 +42,19 @@ export default {
   data() {
     return {
       startFlg: "",
+      endFlg: "",
       current_question: "",
       questions: ["apple", "banana", "chocolate", "dounut", "espresso"],
       typeBox: "",
       current_question_counts: 0,
       question_counts: 0,
+      second: "",
+      totalTime: "",
+      minute: "",
+      recordAll: [],
+      finishTime: "",
+      startTime: "",
+      beforeTime: "",
     };
   },
   computed: {
@@ -65,14 +78,18 @@ export default {
         document.getElementById("typeForm").focus();
       });
     },
+    gameResult: function () {
+      this.startFlg = false;
+      this.endFlg = true;
+    },
     _display() {
-      let totalTime = ((this.finishTime - this.startTime) / 1000).toFixed(1);
-      let minute = Math.floor(totalTime / 60);
-      let second = Math.floor(totalTime % 60);
-      if (minute === 0) {
-        this.beforeTime = `${second}秒`;
+      this.totalTime = ((this.finishTime - this.startTime) / 1000).toFixed(1);
+      this.minute = Math.floor(this.totalTime / 60);
+      this.second = Math.floor(this.totalTime % 60);
+      if (this.minute === 0) {
+        this.beforeTime = `${this.second}秒`;
       } else {
-        this.beforeTime = `${minute}分${second}秒`;
+        this.beforeTime = `${this.minute}分${this.second}秒`;
       }
       this.recordAll.push({
         month: new Date().getMonth() + 1,
@@ -95,6 +112,10 @@ export default {
         this.current_question = this.questions[0];
         this.typeBox = "";
         this.current_question_counts += 1;
+        if (this.current_question_counts == this.question_counts) {
+          this.finishTime = performance.now();
+          this._display();
+        }
       }
     },
   },
