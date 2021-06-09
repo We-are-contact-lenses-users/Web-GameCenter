@@ -6,9 +6,9 @@
 export default {
   data() {
     return {
-      x: 0,
-      y: 0,
-      r: 0,
+      x: -100,
+      y: -100,
+      r: 30,
       color: 0,
     };
   },
@@ -29,21 +29,11 @@ export default {
       ctx.stroke();
       ctx.fill();
     },
-    decidePlace() {
-      this.x = -100 + Math.floor(Math.random() * 1000);
-      this.y = -100 + Math.floor(Math.random() * 1000);
-      this.r = 30 + Math.floor(Math.random() * 70);
-    },
     RandomNumber() {
       this.color = Math.floor(Math.random() * 360);
       return this.color;
     },
-    DisplayMainTopic(ctx) {
-      ctx.beginPath();
-      ctx.arc(60, 60, 40, (0 / 180) * Math.PI, (360 / 180) * Math.PI);
-      ctx.stroke();
-      ctx.fill();
-    },
+    
   },
   mounted() {
     // 背景
@@ -52,9 +42,6 @@ export default {
     ctx1.globalCompositeOperation = "lighter";
     ctx1.strokeStyle = "black";
     ctx1.globalAlpha = 0.4;
-    this.x = -100 + Math.floor(Math.random() * 1000);
-    this.y = -100 + Math.floor(Math.random() * 1000);
-    this.r = 30;
     for (let i = 0; i < 12; i++) {
       for (let j = 0; j < 12; j++) {
         if (i % 2 === 0) {
