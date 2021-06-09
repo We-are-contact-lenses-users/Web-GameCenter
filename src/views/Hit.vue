@@ -2,8 +2,13 @@
   <div class="frame">
     <component
       :is="currentComponent[currentNumber]"
+      :point="point"
       @next="addCurrentNumber"
       @again="minusCurrentNumber"
+      @plusPoint10="plusPoint10"
+      @plusPoint20="plusPoint20"
+      @plusPoint30="plusPoint30"
+      @plusPoint50="plusPoint50"
     ></component>
   </div>
 </template>
@@ -17,7 +22,8 @@ export default {
   data() {
     return {
       currentComponent: ["Home", "IsPlaying", "Result"],
-      currentNumber: 0,
+      currentNumber: 1,
+      point: 0,
     };
   },
   components: {
@@ -34,6 +40,22 @@ export default {
     },
     minusCurrentNumber() {
       this.currentNumber--;
+    },
+    plusPoint10() {
+      this.point += 10 
+      console.log(this.point)
+    },
+    plusPoint20() {
+      this.point += 20 
+      console.log(this.point)
+    },
+    plusPoint30() {
+      this.point += 30 
+      console.log(this.point)
+    },
+    plusPoint50() {
+      this.point += 50 
+      console.log(this.point)
     },
   },
 };

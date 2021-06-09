@@ -4,30 +4,30 @@
 
 <script>
 export default {
-  props: ["point"],
+  props: ["playCount"],
   data() {
     return {
       circle: [
         {
-          x: 50,
+          x: 300,
           y: 50,
           r: 10,
           color: "red",
-          speed: 20,
+          speed: 10,
         },
         {
-          x: 100,
+          x: 80,
           y: 100,
           r: 15,
           color: "blue",
-          speed: 15,
+          speed: 8,
         },
         {
-          x: 150,
+          x: 400,
           y: 150,
           r: 20,
           color: "yellow",
-          speed: 10,
+          speed: 6,
         },
         {
           x: 200,
@@ -47,10 +47,11 @@ export default {
         x: 250,
         y: 430,
         r: 10,
-        speed: 30,
+        speed: 0,
       },
-      speed: 100,
+      speed: 20,
       isHited: false,
+      isPlaying: true,
     };
   },
   methods: {
@@ -107,11 +108,33 @@ export default {
       }
     },
 
-    // collideCircle(ctx2) {
-    //   if (true) {
-    //     this.isHited = true;
-    //   }
-    // },
+    collideCircle() {
+      if (this.ball.y < 30) {
+        this.isHited = !this.isHited;
+      }
+      for (let i = 0; i < this.circle.length; i++) {
+        if (
+          Math.abs(this.circle[i].y - this.ball.y) <
+          this.circle[i].r + this.ball.r
+        ) {
+          if (
+            Math.abs(this.circle[i].x - this.ball.x) <
+            this.circle[i].r + this.ball.r
+          ) {
+            this.isHited = !this.isHited;
+            if(i === 0) {
+              this.$emit('plusPoint50')
+            } else if(i === 1) {
+              this.$emit('plusPoint30')
+            } else if(i === 2) {
+              this.$emit('plusPoint20')
+            } else if(i === 3) {
+              this.$emit('plusPoint10')
+            }
+          }
+        }
+      }
+    },
 
     reset(ctx2) {
       // this.speedごとに再描画
@@ -129,9 +152,9 @@ export default {
         }
         this.circle[i].x += this.circle[i].speed;
       }
-
+      this.collideCircle();
       // 押したときに始まるようにする
-      // this.ball.y = this.ball.speed;
+      this.ball.y -= this.ball.speed;
 
       // 何もない場合繰り返し
       this.reset(ctx2);
@@ -154,6 +177,16 @@ export default {
     ctx2.strokeStyle = "black";
     this.reset(ctx2);
     this.load(ctx2);
+
+    window.addEventListener("keydown", (e) => {
+      if (this.isPlaying === false) {
+        return;
+      }
+      if (e.key === "Enter") {
+        this.ball.speed = 10;
+        this.isPlaying = false;
+      }
+    });
   },
 };
 </script>
