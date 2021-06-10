@@ -7,7 +7,7 @@
       <router-link to="/typinggame">TypingGame</router-link> |
       <router-link to="/puzzlegame">PuzzleGame</router-link> |
       <router-link to="/pinballgame">PinBallGame</router-link> |
-      <router-link to="/hitgame">PinBallGame</router-link> |
+      <router-link to="/hitgame">HitGame</router-link> |
     </div>
     <router-view />
   </div>

@@ -56,11 +56,6 @@ const routes = [
     component: TypingGame,
   },
   {
-    path: "/typinggame",
-    name: "TypingGame",
-    component: TypingGame,
-  },
-  {
     path: "/puzzlegame",
     name: "PuzzleGame",
     component: PuzzleGame,
