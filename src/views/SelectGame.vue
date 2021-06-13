@@ -8,14 +8,11 @@
       <router-link to="/puzzlegame">PuzzleGame</router-link> |
       <router-link to="/pinballgame">PinBallGame</router-link> |
       <router-link to="/hitgame">HitGame</router-link> |
+      <router-link to="/quizgame">QuizGame</router-link> |
     </div>
     <router-view />
   </div>
 </template>
 
-<script>
-
-</script>
-<style scoped>
-
-</style>
+<script></script>
+<style scoped></style>
