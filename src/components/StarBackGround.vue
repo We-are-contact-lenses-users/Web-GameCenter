@@ -1,5 +1,5 @@
 <template>
-    <canvas id="star" width="1200px" height="800px" class="starback"></canvas>
+  <canvas id="star" width="1200px" height="800px" class="starback"></canvas>
 </template>
 
 <script>
@@ -32,7 +32,7 @@ export default {
     let ctx2 = star.getContext("2d");
     this.makeBack(ctx2);
     this.makeStar(ctx2);
-  }
+  },
 };
 </script>
 
