@@ -1,13 +1,10 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/start">Start</router-link> 
-    </div>
     <router-view />
   </div>
 </template>
 
-<style>
+<style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -21,7 +21,7 @@ const routes = [
     component: SelectGame,
   },
   {
-    path: "/start",
+    path: "/",
     name: "Start",
     component: Start,
   },
