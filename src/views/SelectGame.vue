@@ -9,6 +9,7 @@
       <router-link to="/puzzlegame">PuzzleGame</router-link> |
       <router-link to="/pinballgame">PinBallGame</router-link> |
       <router-link to="/hitgame">HitGame</router-link> |
+      <router-link to="/quizgame">QuizGame</router-link> |
     </div>
   </div>
 </template>
