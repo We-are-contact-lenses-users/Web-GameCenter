@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <StarBackGround></StarBackGround>
+    <div class="top-menu">
       <router-link to="/reviewpage">ReviewPage</router-link> |
       <router-link to="/ranking">Ranking</router-link> |
       <router-link to="/signup">SignUp</router-link> |
@@ -10,9 +11,25 @@
       <router-link to="/hitgame">HitGame</router-link> |
       <router-link to="/quizgame">QuizGame</router-link> |
     </div>
-    <router-view />
   </div>
 </template>
 
-<script></script>
-<style scoped></style>
+<script>
+import StarBackGround from "@/components/StarBackGround.vue";
+
+export default {
+  components: {
+    StarBackGround,
+  },
+};
+</script>
+<style scoped>
+#app {
+  position: relative;
+}
+.top-menu {
+  position: absolute;
+  z-index: 1;
+  background: rgba(97, 35, 69, 0.377);
+}
+</style>
