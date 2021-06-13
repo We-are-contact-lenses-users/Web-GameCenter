@@ -1,10 +1,12 @@
 <template>
   <div class="topDisplay">
     <StarBackGround></StarBackGround>
-    <Header v-if='displayNav' @changeNav="changeDisplayNav"></Header>
-    <nav  class="MenuButton">
-      <button @click="changeDisplayNav">Menu</button>
-    </nav>
+    <transition name="fade" mode="out-in">
+      <Header v-if="displayNav" @changeNav="changeDisplayNav"></Header>
+      <nav class="menuButton" v-else>
+        <div @click="changeDisplayNav">Menu</div>
+      </nav>
+    </transition>
     <!-- <nav class="header">
       <div class="batu">
         <span class="batu-first"></span>
@@ -34,14 +36,14 @@ export default {
   },
   data() {
     return {
-      displayNav: true
-    }
+      displayNav: true,
+    };
   },
   methods: {
     changeDisplayNav() {
-      this.displayNav = !this.displayNav
-    }
-  }
+      this.displayNav = !this.displayNav;
+    },
+  },
 };
 </script>
 <style scoped>
@@ -53,6 +55,12 @@ export default {
   left: 100px;
   z-index: 100;
   top: 100px;
+  color: white;
+  transition: color 1s, font-size 1s;
+}
+.menuButton:hover {
+  color: rgba(252, 252, 130, 0.822);
+  font-size: 40px;
 }
 .top-menu {
   position: absolute;
@@ -60,6 +68,22 @@ export default {
   background: rgba(97, 35, 69, 0.377);
   top: 400px;
 }
-
-
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  transition: opacity 1s;
+}
+.fade-enter-to {
+  opacity: 1;
+}
+.fade-leave {
+  opacity: 1;
+}
+.fade-leave-active {
+  transition: opacity 1s;
+}
+.fade-leave-to {
+  opacity: 0;
+}
 </style>

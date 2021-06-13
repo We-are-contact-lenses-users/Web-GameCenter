@@ -26,7 +26,7 @@ export default {
   position: absolute;
   height: 100vh;
   line-height: 60px;
-  background: rgba(247, 197, 224, 0.377);
+  background: rgba(95, 76, 87, 0.651);
   width: 100vw;
   font-size: 24px;
   display: flex;
