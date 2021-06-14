@@ -2,7 +2,7 @@
   <div class="backDisplay">
     <back id="canvas1"></back>
     <h1 class="item item2">Result</h1>
-    <h1 class="item item3">{{point}}点</h1>
+    <h1 class="item item3">{{ point }}点</h1>
     <div @click="next" class="item item4">Home</div>
     <div @click="again" class="item item5">Again</div>
   </div>
@@ -14,7 +14,7 @@ export default {
   components: {
     back,
   },
-  props: ['point'],
+  props: ["point"],
   methods: {
     next() {
       this.$emit("next");

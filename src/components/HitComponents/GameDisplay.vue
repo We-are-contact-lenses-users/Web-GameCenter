@@ -122,14 +122,14 @@ export default {
             this.circle[i].r + this.ball.r
           ) {
             this.isHited = !this.isHited;
-            if(i === 0) {
-              this.$emit('plusPoint50')
-            } else if(i === 1) {
-              this.$emit('plusPoint30')
-            } else if(i === 2) {
-              this.$emit('plusPoint20')
-            } else if(i === 3) {
-              this.$emit('plusPoint10')
+            if (i === 0) {
+              this.$emit("plusPoint50");
+            } else if (i === 1) {
+              this.$emit("plusPoint30");
+            } else if (i === 2) {
+              this.$emit("plusPoint20");
+            } else if (i === 3) {
+              this.$emit("plusPoint10");
             }
           }
         }

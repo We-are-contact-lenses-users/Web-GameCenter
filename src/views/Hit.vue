@@ -24,7 +24,7 @@ export default {
       currentComponent: ["Home", "IsPlaying", "Result"],
       currentNumber: 0,
       point: 0,
-      points: [0, 0, 0, 0, 0],
+      recordAll: [0, 0, 0, 0, 0],
     };
   },
   components: {
@@ -35,7 +35,7 @@ export default {
   methods: {
     addCurrentNumber() {
       if (this.currentNumber === 2) {
-        this.point = 0
+        this.point = 0;
       }
       this.currentNumber++;
       if (this.currentNumber === this.currentComponent.length) {
@@ -47,7 +47,7 @@ export default {
     },
     minusCurrentNumber() {
       if (this.currentNumber === 2) {
-        this.point = 0
+        this.point = 0;
       }
       this.currentNumber--;
     },
@@ -64,20 +64,20 @@ export default {
       this.point += 50;
     },
     ranking() {
-      let changeRanking = false
-      for (let i = 0; i < this.points.length; i++) {
-        if (i === 0 && this.points[i] <= this.point) {
-          this.changeRanking = true
-          this.points.unshift(this.point);
-          this.points.pop();
-        } 
-        if (this.points[i] <= this.point && changeRanking === true) {
-          this.changeRanking = true
-          this.points.pop();
-          this.points.splice(i, 0, this.point);
+      let changeRanking = false;
+      for (let i = 0; i < this.recordAll.length; i++) {
+        if (i === 0 && this.recordAll[i] <= this.point) {
+          this.changeRanking = true;
+          this.recordAll.unshift(this.point);
+          this.recordAll.pop();
+        }
+        if (this.recordAll[i] <= this.point && changeRanking === true) {
+          this.changeRanking = true;
+          this.recordAll.pop();
+          this.recordAll.splice(i, 0, this.point);
         }
       }
-      console.log(this.points);
+      console.log(this.recordAll);
     },
   },
 };

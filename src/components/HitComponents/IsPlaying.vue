@@ -14,7 +14,7 @@
       </div>
     </div>
     <div @click="next" class="item item3">Result</div>
-    <div class="item getpoint" >{{ point }}pt!</div>
+    <div class="item getpoint">{{ point }}pt!</div>
   </div>
 </template>
 

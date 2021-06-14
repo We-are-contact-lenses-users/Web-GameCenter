@@ -65,7 +65,6 @@ export default {
       ctx.strokeText("Web", 200, 170);
       ctx.strokeText("Game Center", 50, 260);
     },
-    
   },
   created() {
     setTimeout(() => {
