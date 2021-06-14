@@ -33,7 +33,6 @@ export default {
       this.color = Math.floor(Math.random() * 360);
       return this.color;
     },
-    
   },
   mounted() {
     // 背景

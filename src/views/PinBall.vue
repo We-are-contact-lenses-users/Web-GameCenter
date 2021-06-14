@@ -23,7 +23,6 @@
 import Home from "@/components/PinBallComponents/Home.vue";
 import IsPlaying from "@/components/PinBallComponents/IsPlaying.vue";
 import Final from "@/components/PinBallComponents/Final.vue";
-// import firebase from "firebase";
 
 export default {
   data() {
@@ -32,7 +31,7 @@ export default {
       currentNumber: 0,
       point: 0,
       currentPlusPoint: 0,
-      recordAll: [],
+      recordAll: [0, 0, 0, 0, 0],
       collideCount: 0,
       bonusPoint: 0,
     };
@@ -42,30 +41,7 @@ export default {
     IsPlaying,
     Final,
   },
-  // mounted() {
-  //   firebase
-  //     .firestore()
-  //     .collection("results")
-  //     .get()
-  //     .then((snapshot) => {
-  //       snapshot.docs.forEach((doc) => {
-  //         this.resultAll.push({
-  //           id: doc.id,
-  //           ...doc.data(),
-  //         });
-  //       });
-  //     });
-  // },
   methods: {
-    // DisplayResult() {
-    //   firebase
-    //     .firestore()
-    //     .collection("results")
-    //     .doc("point")
-    //     .set({
-    //       result: this.recordAll,
-    //     });
-    // },
     addCurrentNumber() {
       this.currentNumber++;
       if (this.currentNumber === 1) {
@@ -114,7 +90,7 @@ export default {
       console.log(this.point);
     },
     plusRandom() {
-      this.currentPlusPoint = Math.floor(Math.random() * 60) - 30;
+      this.currentPlusPoint = Math.floor(Math.random() * 60) - 10;
       this.collideCount++;
       this.point += this.currentPlusPoint;
       this._bonus();
@@ -127,36 +103,21 @@ export default {
       }
     },
     record() {
-      // if (this.recordAll.length === 0) {
-      //   this.recordAll.push(this.point);
-      // } else if (this.recordAll.length < 5) {
-      //   for (let i = 0; i < this.recordAll.length; i++) {
-      //     if (i === 0 && this.recordAll[i] <= this.point) {
-      //       this.recordAll.unshift(this.point);
-      //       this.DisplayResult();
-      //     } else if (this.recordAll[i] <= this.point) {
-      //       this.recordAll.splice(i, 0, this.point);
-      //       this.DisplayResult();
-      //     }
-      //   }
-      // } else {
+      let changeRecordAll = false;
       for (let i = 0; i < this.recordAll.length; i++) {
         if (i === 0 && this.recordAll[i] <= this.point) {
+          changeRecordAll = true;
           this.recordAll.unshift(this.point);
           this.recordAll.pop();
-          // this.DisplayResult();
-          return;
         }
-        if (this.recordAll[i] <= this.point) {
+        if (this.recordAll[i] <= this.point && changeRecordAll === false) {
+          changeRecordAll = true;
           this.recordAll.pop();
           this.recordAll.splice(i, 0, this.point);
-          // this.DisplayResult();
-          return;
         }
       }
     },
   },
-  // },
 };
 </script>
 
