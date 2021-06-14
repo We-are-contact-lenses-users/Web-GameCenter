@@ -35,6 +35,20 @@ h1 {
   padding: 15vh 0 10vh;
   font-size: 60px;
 }
+h2 {
+  margin-bottom: 20px;
+}
+button {
+  display: inline-block;
+  font-size: 18px;
+  width: 300px;
+  height: 50px;
+  margin: 10px !important;
+  padding: 0 !important;
+}
+
+
+
 button:hover {
   opacity: 0.8;
 }

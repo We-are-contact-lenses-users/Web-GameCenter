@@ -35,7 +35,7 @@
             id="canvas"
           ></canvas>
           <div class="flex-item flex-item2">
-            <router-link to="/signin" class="signin">SignIn</router-link>
+            <router-link to="/signin" class="signin" >SignIn</router-link>
           </div>
         </div>
       </div>

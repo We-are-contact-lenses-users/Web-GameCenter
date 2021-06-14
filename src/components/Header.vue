@@ -4,6 +4,7 @@
       <span class="batu-first"></span>
       <span class="batu-second"></span>
     </div>
+    <router-link to="/selectgame" class="linkitem">SelectGame</router-link>
     <router-link to="/reviewpage" class="linkitem">ReviewPage</router-link>
     <router-link to="/ranking" class="linkitem">Ranking</router-link>
     <router-link to="/signup" class="linkitem">SignUp</router-link>
@@ -14,9 +15,15 @@
 export default {
   mounted() {
     let closeButton = document.getElementById("closeButton");
+    let links = document.querySelectorAll('.linkitem')
     closeButton.addEventListener("click", () => {
       this.$emit("changeNav");
     });
+    links.forEach((link) => {
+      link.addEventListener('click', () => {
+        this.$emit("changeNav");
+      })
+    })
   },
 };
 </script>
@@ -26,11 +33,12 @@ export default {
   position: absolute;
   height: 100vh;
   line-height: 60px;
-  background: rgba(95, 76, 87, 0.651);
+  background: rgba(70, 39, 56, 0.651);
   width: 100vw;
   font-size: 24px;
   display: flex;
   flex-direction: column;
+  z-index: 1000;
 }
 
 .header .linkitem {
