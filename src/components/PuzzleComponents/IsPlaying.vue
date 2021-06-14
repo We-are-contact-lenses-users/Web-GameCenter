@@ -37,7 +37,7 @@ export default {
       className: {
         block: "",
       },
-      isPlaying: true,
+      isPlaying: false,
       newblocks: [],
       idChecker: [],
       blocks: [
@@ -151,12 +151,6 @@ export default {
         this.isPlaying = false;
       }
     },
-  },
-  created() {
-    this._shuffle();
-    let number = Math.floor(Math.random() * this.images.length);
-    this.backgroundImage = 'url("' + this.images[number] + '")';
-    console.log(this.backgroundImage);
   },
 };
 </script>

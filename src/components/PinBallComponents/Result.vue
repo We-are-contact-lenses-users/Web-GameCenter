@@ -1,7 +1,7 @@
 <template>
   <div class="descriptionBox">
     <h1>ランキング上位</h1>
-    <table v-if="recordAll.length !== 0" class="result">
+    <table class="result">
       <tr v-for="(record, index) in recordAll" :key="index">
         <td>第 {{ 1 + index }} 位</td>
         <td>{{ record }} pt</td>
