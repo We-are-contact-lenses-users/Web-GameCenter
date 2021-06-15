@@ -1,5 +1,7 @@
 <template>
-  <canvas id="star" width="1200px" height="800px" class="starback"></canvas>
+  <div>
+    <canvas id="star" width="1200px" height="800px" class="starback"></canvas>
+  </div>
 </template>
 
 <script>
@@ -11,7 +13,7 @@ export default {
         let y = Math.floor(Math.random() * 800);
         let r = Math.random() * 2 + 0.3;
         ctx.beginPath();
-        ctx.fillStyle = "white";
+        ctx.fillStyle = "#FFFFCC";
         ctx.arc(x, y, r, (Math.PI * 0) / 180, (Math.PI * 360) / 180);
         ctx.fill();
       }
@@ -38,9 +40,10 @@ export default {
 
 <style scoped>
 .starback {
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 100vh;
-  left: 0;
+  left: 0;  
 }
+
 </style>

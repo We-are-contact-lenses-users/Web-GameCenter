@@ -44,7 +44,8 @@ export default {
 .header .linkitem {
   color: rgba(218, 236, 136, 0.815);
   text-decoration: none;
-  margin-right: 80px;
+  margin-right: 100px;
+  margin-top: 20px;
   transition: color 1s, font-size 1s;
 }
 
@@ -56,8 +57,8 @@ export default {
 .batu {
   width: 60px;
   height: 60px;
-  background: rgba(87, 36, 28, 0.562);
-  margin-right: 80px;
+  margin-right: 100px;
+  margin-top: 10px;
 }
 .batu span {
   display: block;
