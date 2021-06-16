@@ -6,9 +6,9 @@
         <p class="backHome" @click="back">home</p>
         <h1>Let's Puzzle!</h1>
         <div class="border animate__animated animate__fadeIn">
-          <div class="container" key="1">
+          <div class="puzzleContainer" >
             <div
-              v-for="(block, index) in newblocks"
+              v-for="(block, index) in blocks"
               :key="index"
               :class="[
                 'game',
@@ -32,12 +32,15 @@
 
 <script>
 export default {
+  created() {
+    console.log(this.blocks)
+  },
   data() {
     return {
       className: {
         block: "",
       },
-      isPlaying: false,
+      isPlaying: true,
       newblocks: [],
       idChecker: [],
       blocks: [
@@ -167,7 +170,7 @@ body {
   margin: 0;
 }
 h1 {
-  padding: 15vh 0 10vh;
+  padding: 0 10vh 5vh;
   font-size: 60px;
 }
 button:hover {
@@ -181,10 +184,9 @@ button:active {
   display: none;
 }
 .backHome {
-  margin: 20px 40px;
-  padding: 10px;
+  padding: 30px;
   cursor: pointer;
-  float: right;
+  text-align: left;
 }
 
 .backHome:hover {
@@ -211,7 +213,7 @@ button:active {
   border-radius: 10px;
 }
 
-.container {
+.puzzleContainer {
   display: flex;
   width: 300px;
   height: 300px;

@@ -30,7 +30,7 @@ export default {
       recordTime: 0,
       beforeTime: 0,
       recordAll: [],
-      currentNumber: 0,
+      currentNumber: 2,
       componentName: ["home", "firstGame", "result"],
     };
   },
@@ -181,5 +181,6 @@ button:active {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  background: rgba(179, 131, 241, 0.295);
 }
 </style>

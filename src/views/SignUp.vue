@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/start">Start</router-link>
+      <router-link to="/">Start</router-link>
     </div>
     <router-view />
     <div>sign up</div>
