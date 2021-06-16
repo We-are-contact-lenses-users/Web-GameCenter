@@ -60,6 +60,7 @@
   </div>
 </template>
 <script>
+import firebase from "firebase";
 export default {
   data() {
     return {
@@ -87,13 +88,14 @@ export default {
       startFlg: false,
       falseCount: "",
       second: "",
-      result: "",
+      result: "0",
       totalTime: "",
       minute: "",
       recordAll: [],
       finishTime: "",
       startTime: "",
       beforeTime: "",
+      QuizScore: [],
     };
   },
   methods: {
@@ -112,6 +114,10 @@ export default {
           }
         }
         this.result = this.falseCount * 5 + this.second;
+        firebase
+          .firestore()
+          .collection("QuizScore")
+          .add({ score: this.result });
       }
     },
     gameStart: function () {

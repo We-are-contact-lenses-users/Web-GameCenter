@@ -17,6 +17,7 @@
 import Home from "@/components/HitComponents/Home.vue";
 import IsPlaying from "@/components/HitComponents/IsPlaying.vue";
 import Result from "@/components/HitComponents/Result.vue";
+import firebase from "firebase";
 
 export default {
   data() {
@@ -25,6 +26,7 @@ export default {
       currentNumber: 0,
       point: 0,
       recordAll: [0, 0, 0, 0, 0],
+      HitScore: [],
     };
   },
   components: {
@@ -78,6 +80,7 @@ export default {
         }
       }
       console.log(this.recordAll);
+      firebase.firestore().collection("HitScore").add({ score: this.point });
     },
   },
 };

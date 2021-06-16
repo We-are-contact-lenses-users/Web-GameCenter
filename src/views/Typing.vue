@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import firebase from "firebase";
 export default {
   name: "App",
 
@@ -55,6 +56,7 @@ export default {
       finishTime: "",
       startTime: "",
       beforeTime: "",
+      TypingScore: [],
     };
   },
   computed: {
@@ -115,6 +117,10 @@ export default {
         if (this.current_question_counts == this.question_counts) {
           this.finishTime = performance.now();
           this._display();
+          firebase
+            .firestore()
+            .collection("TypingScore")
+            .add({ score: this.second });
         }
       }
     },
