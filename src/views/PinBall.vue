@@ -23,6 +23,7 @@
 import Home from "@/components/PinBallComponents/Home.vue";
 import IsPlaying from "@/components/PinBallComponents/IsPlaying.vue";
 import Final from "@/components/PinBallComponents/Final.vue";
+import firebase from "firebase";
 
 export default {
   data() {
@@ -34,6 +35,7 @@ export default {
       recordAll: [0, 0, 0, 0, 0],
       collideCount: 0,
       bonusPoint: 0,
+      PinBallScore: [],
     };
   },
   components: {
@@ -116,6 +118,10 @@ export default {
           this.recordAll.splice(i, 0, this.point);
         }
       }
+      firebase
+        .firestore()
+        .collection("PinBallScore")
+        .add({ score: this.point });
     },
   },
 };
