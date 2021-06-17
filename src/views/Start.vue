@@ -75,7 +75,6 @@ export default {
   created() {
     setTimeout(() => {
       this.isLoading = !this.isLoading;
-      console.log(this.isLoading);
     }, 4000);
   },
   mounted() {

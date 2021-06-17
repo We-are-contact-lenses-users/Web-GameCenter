@@ -7,12 +7,19 @@
     <router-link to="/selectgame" class="linkitem">SelectGame</router-link>
     <router-link to="/reviewpage" class="linkitem">ReviewPage</router-link>
     <router-link to="/ranking" class="linkitem">Ranking</router-link>
-    <router-link to="/signup" class="linkitem">SignUp</router-link>
+    <router-link to="/" class="linkitem">SignUp</router-link>
+    <!-- <router-link to="/" class="linkitem" @click="signout">SignUp</router-link> -->
   </nav>
 </template>
 
 <script>
+// import firebase from "firebase"
 export default {
+  // methods: {
+  //   signout() {
+  //     firebase.auth().signOut()
+  //   }
+  // },
   mounted() {
     let closeButton = document.getElementById("closeButton");
     let links = document.querySelectorAll('.linkitem')

@@ -1,8 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Start from "../views/Start.vue";
-import SignIn from "../views/SignIn.vue";
-import SignUp from "../views/SignUp.vue";
 import Ranking from "../views/Ranking.vue";
 import ReviewPage from "../views/ReviewPage.vue";
 import ReviewPost from "../views/ReviewPost.vue";
@@ -12,6 +10,7 @@ import PuzzleGame from "../views/Puzzle.vue";
 import PinBallGame from "../views/PinBall.vue";
 import HitGame from "../views/Hit.vue";
 import QuizGame from "../views/Quiz.vue";
+// import firebase from "firebase"
 
 Vue.use(VueRouter);
 
@@ -25,16 +24,6 @@ const routes = [
     path: "/",
     name: "Start",
     component: Start,
-  },
-  {
-    path: "/signin",
-    name: "SignIn",
-    component: SignIn,
-  },
-  {
-    path: "/signup",
-    name: "SignUp",
-    component: SignUp,
   },
   {
     path: "/ranking",
@@ -83,5 +72,19 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
+
+// Vue Router のグローバルガードで、ログインしてない場合は、BeforeSignInにしか行けなくする。
+
+// let isSignedIn = () => {
+//   return firebase.auth().currentUser
+// }
+
+// router.beforeEach((to, from, next) => {
+//   if (to.name !== "Start" && !isSignedIn()) {
+//     next("/Start")
+//   } else {
+//     next()
+//   }
+// })
 
 export default router;
