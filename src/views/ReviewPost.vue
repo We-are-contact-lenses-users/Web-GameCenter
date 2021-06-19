@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-      reviewText: ''
+      reviewText: '',
     }
   },
   methods: {
@@ -34,7 +34,8 @@ export default {
       firebase.firestore().collection("reviews").add({
         picture: this.$auth.currentUser.photoURL,
         person: this.$auth.currentUser.displayName,
-        text: this.reviewText
+        text: this.reviewText,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
       });
       this.reviewText = ""
     }

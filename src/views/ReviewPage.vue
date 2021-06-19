@@ -35,10 +35,12 @@ export default {
     firebase
       .firestore()
       .collection("reviews")
+      .orderBy("createdAt")
+      .limitToLast(50)
       .get()
       .then((snapshot) => {
         snapshot.docs.forEach((doc) => {
-          this.reviews.push({
+          this.reviews.unshift({
             id: doc.id,
             ...doc.data(),
           });
