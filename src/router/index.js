@@ -10,7 +10,6 @@ import PuzzleGame from "../views/Puzzle.vue";
 import PinBallGame from "../views/PinBall.vue";
 import HitGame from "../views/Hit.vue";
 import QuizGame from "../views/Quiz.vue";
-// import firebase from "firebase"
 
 Vue.use(VueRouter);
 
@@ -72,19 +71,5 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
-
-// Vue Router のグローバルガードで、ログインしてない場合は、BeforeSignInにしか行けなくする。
-
-// let isSignedIn = () => {
-//   return firebase.auth().currentUser
-// }
-
-// router.beforeEach((to, from, next) => {
-//   if (to.name !== "Start" && !isSignedIn()) {
-//     next("/Start")
-//   } else {
-//     next()
-//   }
-// })
 
 export default router;

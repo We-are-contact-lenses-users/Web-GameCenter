@@ -18,6 +18,7 @@
 </template>
 <script>
 import StarBackGround from "@/components/StarBackGround.vue";
+import firebase from "firebase"
 
 export default {
   components: {
@@ -30,7 +31,11 @@ export default {
   },
   methods: {
     sendMessage() {
-      // ここにreviewTextをfirebaseに送るコードを書く
+      firebase.firestore().collection("reviews").add({
+        picture: this.$auth.currentUser.photoURL,
+        person: this.$auth.currentUser.displayName,
+        text: this.reviewText
+      });
       this.reviewText = ""
     }
   }

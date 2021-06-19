@@ -36,7 +36,6 @@
           ></canvas>
           <div class="flex-item flex-item2">
             <button @click="signin" class="signin">Signin</button>
-            <router-link to="/selectgame" class="signin" >Let's play!</router-link>
           </div>
         </div>
       </div>
@@ -45,7 +44,7 @@
 </template>
 <script>
 import StarBackGround from "@/components/StarBackGround.vue";
-import firebase from "firebase"
+import firebase from "firebase";
 
 export default {
   data() {
@@ -58,8 +57,16 @@ export default {
   },
   methods: {
     signin() {
-      const provider = new firebase.auth.GoogleAuthProvider()
-      firebase.auth().signInWithPopup(provider)
+      const provider = new firebase.auth.GoogleAuthProvider();
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(() => {
+          this.$router.push("selectgame");
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
     drawTitle(ctx) {
       ctx.shadowColor = "white";
@@ -259,12 +266,6 @@ span:nth-child(10) {
   height: 100vh;
   position: relative;
 }
-/* .starback {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  left: 0;
-} */
 .flex {
   display: flex;
   width: 90%;
@@ -297,6 +298,9 @@ span:nth-child(10) {
   opacity: 0.7;
   transform: scale(1);
   transition-duration: 1s;
+  width: 100%;
+  background: transparent;
+  border: none;
 }
 .signin:hover {
   color: yellow;

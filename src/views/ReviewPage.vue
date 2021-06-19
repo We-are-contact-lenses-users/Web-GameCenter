@@ -4,10 +4,17 @@
     <div class="top-menu">
       <h1 class="title">ReviewPage</h1>
       <div class="reviewBox">
-      <router-link to="/reviewpost" class="reviewpost">投稿</router-link>
+        <router-link to="/reviewpost" class="reviewpost">投稿</router-link>
         <div v-for="(review, index) in reviews" :key="index" class="review">
-          <div class="reviewPerson">{{ review.person }}</div>
-          <div class="textbox">{{ review.text }}</div>
+          <div class="flex">
+            <img :src="review.picture" alt="" class="reviewPicture" />
+            <div class="reviewPerson">{{ review.person }}</div>
+          </div>
+          <div class="textbox">
+            <div class="textinbox">
+              {{ review.text }}
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -16,30 +23,27 @@
 
 <script>
 import StarBackGround from "@/components/StarBackGround.vue";
+import firebase from "firebase";
 
 export default {
   data() {
     return {
-      // ここのデータをfirebaseでやり取りする
-      reviews: [
-        {
-          person: "一人目",
-          text: "楽しいな",
-        },
-        {
-          person: "二人目",
-          text: "難しいな",
-        },
-        {
-          person: "三人目",
-          text: "やっとできた",
-        },
-        {
-          person: "四人目",
-          text: "ゲーセンいいね",
-        },
-      ],
+      reviews: [],
     };
+  },
+  created() {
+    firebase
+      .firestore()
+      .collection("reviews")
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          this.reviews.push({
+            id: doc.id,
+            ...doc.data(),
+          });
+        });
+      });
   },
   components: {
     StarBackGround,
@@ -95,17 +99,39 @@ export default {
   margin-bottom: 200px;
 }
 .reviewPerson {
-  text-align: left;
+  height: 40px;
+  line-height: 40px;
+  letter-spacing: 1.5px;
   font-size: 18px;
-  padding-left: 40px;
+  padding-left: 30px;
   color: aliceblue;
+  display: inline-block;
+  transform: translateY(-10px);
+}
+.reviewPicture {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 .textbox {
-  background: rgba(208, 245, 148, 0.842);
-  padding: 5px 20px;
-  margin-left: 0;
   margin-bottom: 20px;
-  border-radius: 30px;
   font-size: 20px;
+  width: 100%;
+  display: inline-block;
+  text-align: left;
+}
+.textinbox {
+  border-radius: 30px;
+  padding: 10px 20px;
+  margin-left: 30px;
+  background: rgba(208, 245, 148, 0.842);
+  display: inline-block;
+  max-width: 90%;
+  overflow-wrap: break-word;
+}
+.flex {
+  margin-left: 0;
+  text-align: left;
+  padding-left: 30px;
 }
 </style>
