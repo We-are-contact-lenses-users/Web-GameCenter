@@ -132,7 +132,7 @@ export default {
           this.recordAll.splice(i, 0, this.point);
         }
       }
-      this.PinBallScore.push({ score: this.point, name: "sena" });
+      this.PinBallScore.push({ score: this.point, name: this.$auth.currentUser.displayName });
 
       this.PinBallScore.sort((a, b) => {
         return b.score - a.score;
