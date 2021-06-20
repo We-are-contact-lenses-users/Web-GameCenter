@@ -146,6 +146,8 @@ td {
   padding: none;
   margin: 0 !important;
   margin-bottom: 20px !important;
+  display: inline-block;
+  text-align: center;
 }
 .blackBackBase {
   transition: background-color 0.5s;
@@ -166,7 +168,7 @@ td {
   box-shadow: 2px 2px 3px rgba(250, 250, 250, 0.7);
   border-radius: 30px;
   width: 80%;
-  max-width: 600px;
+  max-width: 800px;
   position: absolute;
   top: 15%;
   left: 0;
@@ -181,17 +183,23 @@ td {
 }
 .container {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+  width: 100%;
+  margin: 0 !important;
 }
 .flex-item {
-  width: 40%;
+  display: block;
+  width: 35%;
   padding: 35px 0 25px;
-  margin: 20px;
+  margin: 20px 20px 0;
 }
 .flex-item:first-child img {
   border-radius: 30px;
   width: 100%;
   height: 100%;
+}
+.flex-item:last-child {
+  font-size: 16px;
 }
 .resultTitle {
   font-size: 20px;
@@ -214,11 +222,11 @@ td {
 .animate__animated.animate__lightSpeedInLeft {
   --animate-duration: 1.2s;
 }
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .container,
   .flex {
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: start;
     margin: 0 auto;
     align-items: center;
   }
@@ -229,8 +237,9 @@ td {
     width: 30%;
   }
   .flex-item:last-child {
-    width: 80%;
+    /* width: 80%; */
     padding-top: 0;
+    margin: 0;
   }
   .flex button {
     width: 70%;

@@ -27,10 +27,8 @@ export default {
 }
 body {
   margin: 0 !important;
-}
-h1 {
-  padding: 15vh 0 10vh;
-  font-size: 60px;
+  width: 400px;
+  height: 400px;
 }
 button:hover {
   opacity: 0.8;

@@ -30,7 +30,7 @@ export default {
       recordTime: 0,
       beforeTime: 0,
       recordAll: [],
-      currentNumber: 2,
+      currentNumber: 0,
       componentName: ["home", "firstGame", "result"],
     };
   },
@@ -134,22 +134,6 @@ export default {
       }
     },
   },
-  // watch: {
-  //   recordAll() {
-  //     localStorage.recordAll = JSON.stringify(this.recordAll);
-  //   },
-  //   beforeTime() {
-  //     localStorage.beforeTime = JSON.stringify(this.beforeTime);
-  //   },
-  // },
-  // created() {
-  //   if (localStorage.recordAll) {
-  //     this.recordAll = JSON.parse(localStorage.recordAll);
-  //   }
-  //   if (localStorage.beforeTime) {
-  //     this.beforeTime = JSON.parse(localStorage.beforeTime);
-  //   }
-  // },
 };
 </script>
 
