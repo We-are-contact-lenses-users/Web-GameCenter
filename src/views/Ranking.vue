@@ -24,7 +24,7 @@
 </template>
 <script>
 import StarBackGround from "@/components/StarBackGround.vue";
-import firebase from "firebase";
+// import firebase from "firebase";
 
 export default {
   // ここのデータをfirebaseから引っ張り出す
