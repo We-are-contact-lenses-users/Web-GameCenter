@@ -38,6 +38,20 @@ export default {
       PinBallScore: [],
     };
   },
+  created() {
+    firebase
+      .firestore()
+      .collection("Score")
+      .doc("PinBallTop5")
+      .get()
+      .then((doc) => {
+        doc.data().Top5.forEach((Top5) => {
+          this.PinBallScore.push({
+            ...Top5,
+          });
+        });
+      });
+  },
   components: {
     Home,
     IsPlaying,
@@ -118,10 +132,18 @@ export default {
           this.recordAll.splice(i, 0, this.point);
         }
       }
+      this.PinBallScore.push({ score: this.point, name: "sena" });
+
+      this.PinBallScore.sort((a, b) => {
+        return b.score - a.score;
+      });
+      this.PinBallScore.splice(5, 1);
+
       firebase
         .firestore()
-        .collection("PinBallScore")
-        .add({ score: this.point });
+        .collection("Score")
+        .doc("PinBallTop5")
+        .set({ Top5: this.PinBallScore });
     },
   },
 };

@@ -29,6 +29,20 @@ export default {
       HitScore: [],
     };
   },
+  created() {
+    firebase
+      .firestore()
+      .collection("Score")
+      .doc("HitTop5")
+      .get()
+      .then((doc) => {
+        doc.data().Top5.forEach((Top5) => {
+          this.HitScore.push({
+            ...Top5,
+          });
+        });
+      });
+  },
   components: {
     Home,
     IsPlaying,
@@ -80,7 +94,19 @@ export default {
         }
       }
       console.log(this.recordAll);
-      firebase.firestore().collection("HitScore").add({ score: this.point });
+
+      this.HitScore.push({ score: this.point, name: "sena" });
+
+      this.HitScore.sort((a, b) => {
+        return b.score - a.score;
+      });
+      this.HitScore.splice(5, 1);
+
+      firebase
+        .firestore()
+        .collection("Score")
+        .doc("HitTop5")
+        .set({ Top5: this.HitScore });
     },
   },
 };
