@@ -59,6 +59,20 @@ export default {
       TypingScore: [],
     };
   },
+  created() {
+    firebase
+      .firestore()
+      .collection("Score")
+      .doc("TypingTop5")
+      .get()
+      .then((doc) => {
+        doc.data().Top5.forEach((Top5) => {
+          this.TypingScore.push({
+            ...Top5,
+          });
+        });
+      });
+  },
   computed: {
     styleObject: function () {
       let width = 20 * this.current_question_counts + "%";
@@ -85,21 +99,13 @@ export default {
       this.endFlg = true;
     },
     _display() {
-      this.totalTime = ((this.finishTime - this.startTime) / 1000).toFixed(1);
-      this.minute = Math.floor(this.totalTime / 60);
-      this.second = Math.floor(this.totalTime % 60);
+      this.totalTime = ((this.finishTime - this.startTime) / 1000).toFixed(2);
+
+      this.second = this.totalTime;
       if (this.minute === 0) {
         this.beforeTime = `${this.second}秒`;
       } else {
         this.beforeTime = `${this.minute}分${this.second}秒`;
-      }
-      this.recordAll.push({
-        month: new Date().getMonth() + 1,
-        date: new Date().getDate(),
-        record: this.beforeTime,
-      });
-      if (this.recordAll.length === 6) {
-        this.recordAll.splice(0, 1);
       }
     },
   },
@@ -117,10 +123,19 @@ export default {
         if (this.current_question_counts == this.question_counts) {
           this.finishTime = performance.now();
           this._display();
+
+          this.TypingScore.push({ score: this.second, name: "sena" });
+
+          this.TypingScore.sort((a, b) => {
+            return a.score - b.score;
+          });
+          this.TypingScore.splice(5, 1);
+
           firebase
             .firestore()
-            .collection("TypingScore")
-            .add({ score: this.second });
+            .collection("Score")
+            .doc("TypingTop5")
+            .set({ Top5: this.TypingScore });
         }
       }
     },

@@ -4,13 +4,17 @@
     <div class="top-menu">
       <h1 class="title">Ranking</h1>
       <ul class="rankings">
-        <li v-for="(ranking, index) in rankings" :key="index" class="rankingBox">
-          <h2>{{ranking.title}}</h2>
+        <li
+          v-for="(ranking, index) in rankings"
+          :key="index"
+          class="rankingBox"
+        >
+          <h2>{{ ranking.title }}</h2>
           <table>
             <tr v-for="(rank, index2) in ranking" :key="index * 10 + index2">
-              <td>{{rank.rank}}</td>
-              <td>{{rank.person}}</td>
-              <td>{{rank.result}}</td>
+              <td>{{ rank.rank }}</td>
+              <td>{{ rank.person }}</td>
+              <td>{{ rank.result }}</td>
             </tr>
           </table>
         </li>
@@ -20,6 +24,7 @@
 </template>
 <script>
 import StarBackGround from "@/components/StarBackGround.vue";
+import firebase from "firebase";
 
 export default {
   // ここのデータをfirebaseから引っ張り出す
@@ -27,31 +32,31 @@ export default {
     return {
       rankings: {
         allranking: {
-          title: '総合ランキング',
+          title: "総合ランキング",
           first: {
             rank: "1位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
           second: {
             rank: "2位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
           third: {
             rank: "3位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
           fourth: {
             rank: "4位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
           fifth: {
             rank: "5位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
         },
         puzzlegame: {
@@ -59,27 +64,27 @@ export default {
           first: {
             rank: "1位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
           second: {
             rank: "2位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
           third: {
             rank: "3位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
           fourth: {
             rank: "4位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
           fifth: {
             rank: "5位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
         },
         typinggame: {
@@ -87,55 +92,55 @@ export default {
           first: {
             rank: "1位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
           second: {
             rank: "2位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
           third: {
             rank: "3位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
           fourth: {
             rank: "4位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
           fifth: {
             rank: "5位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
         },
         pinballgame: {
-          title: 'Pinball Game',
+          title: "Pinball Game",
           first: {
             rank: "1位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
           second: {
             rank: "2位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
           third: {
             rank: "3位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
           fourth: {
             rank: "4位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
           fifth: {
             rank: "5位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
         },
         quizgame: {
@@ -143,27 +148,27 @@ export default {
           first: {
             rank: "1位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
           second: {
             rank: "2位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
           third: {
             rank: "3位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
           fourth: {
             rank: "4位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
           fifth: {
             rank: "5位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
         },
         snipergame: {
@@ -171,31 +176,31 @@ export default {
           first: {
             rank: "1位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
           second: {
             rank: "2位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
           third: {
             rank: "3位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
           fourth: {
             rank: "4位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
           fifth: {
             rank: "5位",
             person: "入賞者",
-            result: 0
+            result: 0,
           },
-        }
-      }
-    }
+        },
+      },
+    };
   },
   components: {
     StarBackGround,
@@ -254,7 +259,7 @@ td {
   width: 30%;
 }
 
-@media(max-width: 900px) {
+@media (max-width: 900px) {
   ul {
     flex-direction: column;
   }

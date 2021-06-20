@@ -86,7 +86,7 @@ export default {
         },
       ],
       startFlg: false,
-      falseCount: "",
+      falseCount: 0,
       second: "",
       result: "0",
       totalTime: "",
@@ -97,6 +97,20 @@ export default {
       beforeTime: "",
       QuizScore: [],
     };
+  },
+  created() {
+    firebase
+      .firestore()
+      .collection("Score")
+      .doc("QuizTop5")
+      .get()
+      .then((doc) => {
+        doc.data().Top5.forEach((Top5) => {
+          this.QuizScore.push({
+            ...Top5,
+          });
+        });
+      });
   },
   methods: {
     addAnswer: function (index) {
@@ -114,10 +128,18 @@ export default {
           }
         }
         this.result = this.falseCount * 5 + this.second;
+        this.QuizScore.push({ score: this.result, name: "sena" });
+
+        this.QuizScore.sort((a, b) => {
+          return a.score - b.score;
+        });
+        this.QuizScore.splice(5, 1);
+
         firebase
           .firestore()
-          .collection("QuizScore")
-          .add({ score: this.result });
+          .collection("Score")
+          .doc("QuizTop5")
+          .set({ Top5: this.QuizScore });
       }
     },
     gameStart: function () {
