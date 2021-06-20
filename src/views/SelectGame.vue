@@ -25,6 +25,7 @@
         <div class="image image6">
           <p>Welcome</p>
           <p>Web GameCenter</p>
+          <p>{{ user.displayName }}</p>
         </div>
       </div>
     </div>
@@ -88,6 +89,15 @@ export default {
   components: {
     StarBackGround,
   },
+  computed: {
+    user() {
+      return this.$auth.currentUser;
+    },
+  },
+  // mounted() {
+  //   console.log('select')
+  //   console.log(this.$auth.currentUser.displayName);
+  // }
 };
 </script>
 <style scoped>
@@ -155,6 +165,9 @@ export default {
   text-align: center;
   line-height: 60px;
   padding-top: 70px;
+}
+.image6 p:last-child {
+  letter-spacing: 2px;
 }
 
 @keyframes movePicture {
@@ -224,7 +237,6 @@ export default {
 .top-menu {
   position: absolute;
   z-index: 1;
-  /* background: rgba(97, 35, 69, 0.377); */
   top: 100vh;
   left: 0;
   right: 0;

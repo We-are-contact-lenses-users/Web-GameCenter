@@ -6,7 +6,75 @@
       <div class="postBox">
         <form class="form">
           <label for="text">投稿内容</label>
-          <textarea id="text" cols="30" rows="10" v-model="reviewText" placeholder="Write your comment!"></textarea>
+          <textarea
+            id="text"
+            cols="30"
+            rows="10"
+            v-model="reviewText"
+            placeholder="Write your comment!"
+          ></textarea>
+          <div class="radiobox">
+            <div class="flexitem">
+              <input
+                value="Total"
+                v-model="reviewType"
+                name="type"
+                type="radio"
+                id="total"
+              />
+              <label class="label" for="total">Total</label>
+            </div>
+            <div class="flexitem">
+              <input
+                value="PinballGame"
+                v-model="reviewType"
+                name="type"
+                type="radio"
+                id="pinball"
+              />
+              <label class="label" for="pinball">PinballGame</label>
+            </div>
+            <div class="flexitem">
+              <input
+                value="PuzzleGame"
+                v-model="reviewType"
+                name="type"
+                type="radio"
+                id="puzzle"
+              />
+              <label class="label" for="puzzle">PuzzleGame</label>
+            </div>
+            <div class="flexitem">
+              <input
+                value="TypingGame"
+                v-model="reviewType"
+                name="type"
+                type="radio"
+                id="typing"
+              />
+              <label class="label" for="typing">TypingGame</label>
+            </div>
+            <div class="flexitem">
+              <input
+                value="QuizGame"
+                v-model="reviewType"
+                name="type"
+                type="radio"
+                id="quiz"
+              />
+              <label class="label" for="quiz">QuizGame</label>
+            </div>
+            <div class="flexitem">
+              <input
+                value="SniperGame"
+                v-model="reviewType"
+                name="type"
+                type="radio"
+                id="sniper"
+              />
+              <label class="label" for="sniper">SniperGame</label>
+            </div>
+          </div>
         </form>
         <button class="button" @click="sendMessage">Send message</button>
         <router-link to="/reviewpage" class="button">Review Page</router-link>
@@ -18,6 +86,7 @@
 </template>
 <script>
 import StarBackGround from "@/components/StarBackGround.vue";
+import firebase from "firebase";
 
 export default {
   components: {
@@ -25,15 +94,55 @@ export default {
   },
   data() {
     return {
-      reviewText: ''
-    }
+      reviewText: "",
+      reviewType: "",
+      firebaseDatas: [
+        {
+          topic: "Total",
+          collection: "reviewTotal",
+        },
+        {
+          topic: "PinballGame",
+          collection: "reviewPinballGame",
+        },
+        {
+          topic: "PuzzleGame",
+          collection: "reviewPuzzleGame",
+        },
+        {
+          topic: "TypingGame",
+          collection: "reviewTypingGame",
+        },
+        {
+          topic: "QuizGame",
+          collection: "reviewQuizGame",
+        },
+        {
+          topic: "SniperGame",
+          collection: "reviewSniperGame",
+        },
+      ],
+    };
   },
   methods: {
     sendMessage() {
-      // ここにreviewTextをfirebaseに送るコードを書く
-      this.reviewText = ""
-    }
-  }
+      if (!this.reviewText || !this.reviewType) {
+        return;
+      }
+      this.reviewText = "";
+      this.firebaseDatas.forEach((firebaseData) => {
+        if (this.reviewType === firebaseData.topic) {
+          firebase.firestore().collection(firebaseData.collection).add({
+            picture: this.$auth.currentUser.photoURL,
+            person: this.$auth.currentUser.displayName,
+            text: this.reviewText,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          });
+          this.reviewType = "";
+        }
+      });
+    },
+  },
 };
 </script>
 <style scoped>
@@ -78,7 +187,32 @@ export default {
   text-align: left;
   padding: 30px;
   font-size: 20px;
-  
+}
+.radiobox {
+  width: 80%;
+  max-width: 750px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.flexitem {
+  width: 40%;
+}
+.form input {
+  display: inline-block;
+  width: 20px;
+  margin: 0;
+}
+.form .label {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  width: 80%;
+  font-size: 14px;
+  transition: all 1s;
+}
+.form .label:hover {
+  color: yellow;
+  font-size: 18px;
 }
 .button {
   display: inline-block;
@@ -95,5 +229,4 @@ export default {
   color: yellow;
   font-size: 30px;
 }
-
 </style>

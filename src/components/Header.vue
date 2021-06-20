@@ -1,5 +1,5 @@
 <template>
-  <nav class="header">
+  <nav class="header" >
     <div class="batu" id="closeButton">
       <span class="batu-first"></span>
       <span class="batu-second"></span>
@@ -7,12 +7,26 @@
     <router-link to="/selectgame" class="linkitem">SelectGame</router-link>
     <router-link to="/reviewpage" class="linkitem">ReviewPage</router-link>
     <router-link to="/ranking" class="linkitem">Ranking</router-link>
-    <router-link to="/signup" class="linkitem">SignUp</router-link>
+    <div class="linkitem" @click="signout">SignUp</div>
   </nav>
 </template>
 
 <script>
+import firebase from "firebase"
 export default {
+  methods: {
+    signout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.replace("/");
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+  },
   mounted() {
     let closeButton = document.getElementById("closeButton");
     let links = document.querySelectorAll('.linkitem')
@@ -47,6 +61,10 @@ export default {
   margin-right: 100px;
   margin-top: 20px;
   transition: color 1s, font-size 1s;
+  background: transparent;
+  border: none;
+  font-size: 26px;
+  cursor: pointer;
 }
 
 .header .linkitem:hover {

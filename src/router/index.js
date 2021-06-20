@@ -1,8 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Start from "../views/Start.vue";
-import SignIn from "../views/SignIn.vue";
-import SignUp from "../views/SignUp.vue";
 import Ranking from "../views/Ranking.vue";
 import ReviewPage from "../views/ReviewPage.vue";
 import ReviewPost from "../views/ReviewPost.vue";
@@ -25,16 +23,6 @@ const routes = [
     path: "/",
     name: "Start",
     component: Start,
-  },
-  {
-    path: "/signin",
-    name: "SignIn",
-    component: SignIn,
-  },
-  {
-    path: "/signup",
-    name: "SignUp",
-    component: SignUp,
   },
   {
     path: "/ranking",

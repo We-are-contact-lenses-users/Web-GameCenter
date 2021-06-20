@@ -14,6 +14,7 @@
 
 <script>
 import Header from "@/components/Header.vue";
+import "./firebase";
 
 export default {
   components: {
@@ -33,9 +34,11 @@ export default {
       this.isSigned = !this.isSigned;
     },
   },
+
   created() {
-    this.displayMenu()
-  }
+    console.log(this.$auth.currentUser);
+    this.displayMenu();
+  },
 };
 </script>
 
@@ -78,7 +81,7 @@ export default {
   opacity: 0;
 }
 .fade-enter-active {
-  transition: opacity 0.5s;
+  transition: opacity 0.3s;
 }
 .fade-enter-to {
   opacity: 1;
@@ -87,12 +90,15 @@ export default {
   opacity: 1;
 }
 .fade-leave-active {
-  transition: opacity 0.5s;
+  transition: opacity 0.3s;
 }
 .fade-leave-to {
   opacity: 0;
 }
 .displayMenuButton {
+  display: none;
+}
+.displayHeader {
   display: none;
 }
 </style>
