@@ -128,7 +128,7 @@ export default {
           }
         }
         this.result = this.falseCount * 5 + this.second;
-        this.QuizScore.push({ score: this.result, name: "sena" });
+        this.QuizScore.push({ score: this.result, name: this.$auth.currentUser.displayName });
 
         this.QuizScore.sort((a, b) => {
           return a.score - b.score;

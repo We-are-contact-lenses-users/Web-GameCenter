@@ -124,7 +124,7 @@ export default {
           this.finishTime = performance.now();
           this._display();
 
-          this.TypingScore.push({ score: this.second, name: "sena" });
+          this.TypingScore.push({ score: this.second, name: this.$auth.currentUser.displayName });
 
           this.TypingScore.sort((a, b) => {
             return a.score - b.score;

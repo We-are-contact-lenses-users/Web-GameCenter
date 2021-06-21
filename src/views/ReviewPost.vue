@@ -129,7 +129,6 @@ export default {
       if (!this.reviewText || !this.reviewType) {
         return;
       }
-      this.reviewText = "";
       this.firebaseDatas.forEach((firebaseData) => {
         if (this.reviewType === firebaseData.topic) {
           firebase.firestore().collection(firebaseData.collection).add({
@@ -141,6 +140,7 @@ export default {
           this.reviewType = "";
         }
       });
+      this.reviewText = "";
     },
   },
 };

@@ -71,7 +71,7 @@ export default {
           record: this.beforeTime,
           compareTime: Number(totalTime),
         });
-      } else if (this.recordAll.length < 5) {
+      } else if (this.recordAll.length < 10) {
         let changeRecordAll = false;
         for (let i = 0; i < this.recordAll.length; i++) {
           if (i === 0 && this.recordAll[i].compareTime > totalTime) {
@@ -104,7 +104,7 @@ export default {
             compareTime: Number(totalTime),
           });
         }
-      } else if (this.recordAll.length === 5) {
+      } else if (this.recordAll.length === 10) {
         let changeRecordAll = false;
         for (let i = 0; i < this.recordAll.length; i++) {
           if (i === 0 && this.recordAll[i].compareTime >= totalTime) {
@@ -132,6 +132,8 @@ export default {
           }
         }
       }
+      // firebaseいれてー
+      // compareTimeで比較、recordで出力
     },
   },
 };

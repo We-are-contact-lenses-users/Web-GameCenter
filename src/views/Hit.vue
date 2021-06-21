@@ -95,7 +95,7 @@ export default {
       }
       console.log(this.recordAll);
 
-      this.HitScore.push({ score: this.point, name: "sena" });
+      this.HitScore.push({ score: this.point, name: this.$auth.currentUser.displayName });
 
       this.HitScore.sort((a, b) => {
         return b.score - a.score;
