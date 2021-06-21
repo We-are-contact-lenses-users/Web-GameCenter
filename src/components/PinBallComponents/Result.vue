@@ -2,9 +2,9 @@
   <div class="descriptionBox">
     <h1>ランキング上位</h1>
     <table class="result">
-      <tr v-for="(record, index) in recordAll" :key="index">
+      <tr v-for="(record, index) in pinBallScore" :key="index">
         <td>第 {{ 1 + index }} 位</td>
-        <td>{{ record }} pt</td>
+        <td>{{ record.score }} pt</td>
       </tr>
     </table>
     <button @click="active">戻る</button>
@@ -13,11 +13,14 @@
 
 <script>
 export default {
-  props: ["recordAll"],
+  props: ["pinBallScore"],
   methods: {
     active() {
       this.$emit("back");
     },
+  },
+  mounted() {
+    console.log(this.pinBallScore);
   },
 };
 </script>
@@ -25,7 +28,7 @@ export default {
 <style scoped>
 .descriptionBox {
   position: absolute;
-  top: 20%;
+  top: 15%;
   right: 0;
   left: 0;
   width: 80%;

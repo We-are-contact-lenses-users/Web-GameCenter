@@ -12,6 +12,7 @@
 
 <script>
 export default {
+  
   methods: {
     active() {
       this.$emit("back");
@@ -23,7 +24,7 @@ export default {
 <style scoped>
 .descriptionBox {
   position: absolute;
-  top: 20%;
+  top: 15%;
   right: 0;
   left: 0;
   width: 80%;
@@ -45,13 +46,17 @@ h1 {
   line-height: 1.7;
   padding-top: 30px;
 }
+.text p {
+  text-align: left;
+  font-size: 24px;
+} 
 button {
   display: inline-block;
   font-size: 20px;
   line-height: 2;
   height: 50px;
   opacity: 1;
-  margin: 20px auto;
+  margin: 30px auto;
   width: 150px;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.6);
   background-color: rgba(255, 255, 255, 0.6);

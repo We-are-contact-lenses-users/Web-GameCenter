@@ -9,8 +9,8 @@ export default {
   data() {
     return {
       ball: {
-        x: 120,
-        y: 200,
+        x: 250,
+        y: 160,
         r: 10,
         dx: 5,
         dy: 10,
@@ -18,7 +18,8 @@ export default {
       bar: {
         x: 220,
         y: 450,
-        dx: 15,
+        dx: 20,
+        length: 80,
       },
       pin: [
         {
@@ -43,27 +44,32 @@ export default {
         },
         {
           x: 205,
-          y: 65,
+          y: 105,
           r: 5,
         },
         {
           x: 295,
-          y: 65,
+          y: 105,
           r: 5,
         },
         {
           x: 80,
-          y: 110,
+          y: 125,
           r: 5,
         },
         {
-          x: 250,
-          y: 130,
+          x: 140,
+          y: 170,
+          r: 5,
+        },
+        {
+          x: 360,
+          y: 170,
           r: 5,
         },
         {
           x: 420,
-          y: 110,
+          y: 125,
           r: 5,
         },
         {
@@ -77,13 +83,28 @@ export default {
           r: 5,
         },
         {
-          x: 175,
-          y: 200,
+          x: 210,
+          y: 250,
           r: 5,
         },
         {
-          x: 325,
-          y: 200,
+          x: 290,
+          y: 250,
+          r: 5,
+        },
+        {
+          x: 160,
+          y: 190,
+          r: 5,
+        },
+        {
+          x: 250,
+          y: 160,
+          r: 5,
+        },
+        {
+          x: 340,
+          y: 190,
           r: 5,
         },
         {
@@ -103,7 +124,7 @@ export default {
         },
         {
           x: 250,
-          y: 300,
+          y: 320,
           r: 5,
         },
         {
@@ -232,10 +253,16 @@ export default {
           this.ball.dy *= -1;
           console.log("hitLeft");
         }
-        if (this.ball.x > this.bar.x && this.ball.x <= this.bar.x + 80) {
+        if (
+          this.ball.x > this.bar.x &&
+          this.ball.x <= this.bar.x + this.bar.length
+        ) {
           this.ball.dy *= -1;
         }
-        if (this.ball.x > this.bar.x + 80 && this.ball.x <= this.bar.x + 100) {
+        if (
+          this.ball.x > this.bar.x + 80 &&
+          this.ball.x <= this.bar.x + 20 + this.bar.length
+        ) {
           if (this.ball.dx > 0) {
             return;
           }
@@ -256,11 +283,11 @@ export default {
         ) {
           if (Math.abs(this.ball.x - this.pin[i].x) >= this.pin[i].r) {
             if (this.ball.x < this.pin[i].x && this.ball.dx > 0) {
-              this.ball.dx -= 2;
+              this.ball.dx -= 1;
               this.ball.dx *= -1;
             }
             if (this.ball.x > this.pin[i].x && this.ball.dx < 0) {
-              this.ball.dx += 2;
+              this.ball.dx += 1;
               this.ball.dx *= -1;
             }
           }
@@ -290,10 +317,14 @@ export default {
       if (this.ball.y < this.lineLength) {
         for (let i = 1; i <= 4; i++) {
           if (this.ball.x + this.ball.r > i * 100 && this.ball.x < i * 100) {
-            this.ball.dx *= -1;
+            if (this.ball.dx > 0) {
+              this.ball.dx *= -1;
+            }
           }
           if (this.ball.x - this.ball.r < i * 100 && this.ball.x > i * 100) {
-            this.ball.dx *= -1;
+            if (this.ball.dx < 0) {
+              this.ball.dx *= -1;
+            }
           }
         }
       }
@@ -319,13 +350,16 @@ export default {
         this.$emit("plus30");
       }
       if (this.ball.x > 300 && this.ball.x <= 400) {
-        for (let i = 6; i < this.pin.length; i++) {
-          this.pin[i].r++;
+        if (this.bar.length > 40) {
+          this.bar.length *= 0.95;
         }
         this.$emit("plusRandom");
       }
       if (this.ball.x > 400 && this.ball.x < 500) {
         this.$emit("plus20");
+      }
+      if (this.speed > 40) {
+        this.speed *= 0.98;
       }
     },
     reset(ctx) {
@@ -372,10 +406,13 @@ export default {
     if (!canvas) return;
     let ctx = canvas.getContext("2d");
     let isStart = false;
+    this.ball.dx =
+      (Math.floor(Math.random() * 5) + 5) *
+      Math.pow(-1, Math.floor(Math.random() * 2));
     this.reset(ctx);
     // バーを動かす設定
     window.addEventListener("keydown", (e) => {
-      if (this.bar.x < 400 && e.key === "ArrowRight") {
+      if (this.bar.x < 500 - this.bar.length && e.key === "ArrowRight") {
         this.bar.x += this.bar.dx;
       }
     });

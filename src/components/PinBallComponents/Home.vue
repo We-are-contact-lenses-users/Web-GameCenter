@@ -29,7 +29,6 @@
 <script>
 import BlockBack from "./BlockBack.vue";
 import description from "./Description.vue";
-// import result from "./Pinball_Result.vue";
 import result from "./Result.vue";
 export default {
   components: {

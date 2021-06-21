@@ -2,8 +2,8 @@
   <div>
     <component
       :is="currentComponent[currentNumber]"
+      :pinBallScore="PinBallScore"
       :point="point"
-      :recordAll="recordAll"
       :collideCount="collideCount"
       :bonusPoint="bonusPoint"
       :currentPlusPoint="currentPlusPoint"
@@ -51,6 +51,7 @@ export default {
           });
         });
       });
+      console.log(this.PinBallScore)
   },
   components: {
     Home,
