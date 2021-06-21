@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mainbox">
     <div
       :class="{ blackBack: isActive, blackBack2: isActive2 }"
       class="blackBackBase"
@@ -22,7 +22,7 @@
       </div>
     </div>
     <div :class="{ whiteBox1: isActive }" class="whiteBoxBase1">
-      <div class="container">
+      <div class="flexcontainer">
         <div class="flex-item">
           <img src="@/assets/キャプチャ.gif" />
         </div>
@@ -36,7 +36,7 @@
       </button>
     </div>
     <div :class="{ whiteBox2: isActive2 }" class="whiteBoxBase2">
-      <p class="resultTitle">直近５回の成績</p>
+      <p class="resultTitle">Top 5</p>
       <table v-if="recordAll.length !== 0" class="result">
         <tr>
           <td>date</td>
@@ -93,6 +93,11 @@ export default {
   font-family: "Squada One", cursive;
   letter-spacing: 2px;
 }
+.mainbox {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
 h1 {
   padding: 15vh 0 10vh;
   font-size: 60px;
@@ -115,7 +120,7 @@ button:active {
   left: 10vw;
 }
 .box {
-  max-width: 600px;
+  max-width: 700px;
   position: absolute;
   left: 0;
   right: 0;
@@ -143,7 +148,7 @@ td {
   justify-content: center;
 }
 .btn {
-  padding: none;
+  padding: 5px 10px;
   margin: 0 !important;
   margin-bottom: 20px !important;
   display: inline-block;
@@ -181,17 +186,17 @@ td {
   transform: translateY(0);
   opacity: 1;
 }
-.container {
+.flexcontainer {
   display: flex;
   justify-content: space-evenly;
   width: 100%;
   margin: 0 !important;
 }
 .flex-item {
+  text-align: left;
   display: block;
-  width: 35%;
-  padding: 35px 0 25px;
-  margin: 20px 20px 0;
+  width: 30%;
+  padding: 30px 0;
 }
 .flex-item:first-child img {
   border-radius: 30px;
@@ -200,6 +205,7 @@ td {
 }
 .flex-item:last-child {
   font-size: 16px;
+  width: 50%;
 }
 .resultTitle {
   font-size: 20px;
@@ -223,12 +229,16 @@ td {
   --animate-duration: 1.2s;
 }
 @media (max-width: 800px) {
-  .container,
   .flex {
     flex-direction: column;
-    justify-content: start;
+    justify-content: space-between;
+    flex-wrap: wrap;
     margin: 0 auto;
     align-items: center;
+  }
+  .flexcontainer {
+    flex-direction: column;
+    justify-content: space-between;
   }
   .flex-item {
     margin: 0 auto;
@@ -237,7 +247,7 @@ td {
     width: 30%;
   }
   .flex-item:last-child {
-    /* width: 80%; */
+    width: 70%;
     padding-top: 0;
     margin: 0;
   }

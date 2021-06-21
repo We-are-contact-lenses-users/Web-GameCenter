@@ -28,7 +28,7 @@ export default {
       startTime: 0,
       finishTime: 0,
       recordTime: 0,
-      beforeTime: 0,
+      beforeTime: "-",
       recordAll: [],
       currentNumber: 0,
       componentName: ["home", "firstGame", "result"],
@@ -164,7 +164,7 @@ button:active {
   display: none;
 }
 .mainBox {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   overflow: hidden;
   background: rgba(179, 131, 241, 0.295);
