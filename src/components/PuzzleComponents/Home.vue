@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mainbox">
     <div
       :class="{ blackBack: isActive, blackBack2: isActive2 }"
       class="blackBackBase"
@@ -22,7 +22,7 @@
       </div>
     </div>
     <div :class="{ whiteBox1: isActive }" class="whiteBoxBase1">
-      <div class="container">
+      <div class="flexcontainer">
         <div class="flex-item">
           <img src="@/assets/キャプチャ.gif" />
         </div>
@@ -36,7 +36,7 @@
       </button>
     </div>
     <div :class="{ whiteBox2: isActive2 }" class="whiteBoxBase2">
-      <p class="resultTitle">直近５回の成績</p>
+      <p class="resultTitle">Top 5</p>
       <table v-if="recordAll.length !== 0" class="result">
         <tr>
           <td>date</td>
@@ -93,6 +93,11 @@ export default {
   font-family: "Squada One", cursive;
   letter-spacing: 2px;
 }
+.mainbox {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
 h1 {
   padding: 15vh 0 10vh;
   font-size: 60px;
@@ -115,7 +120,7 @@ button:active {
   left: 10vw;
 }
 .box {
-  max-width: 600px;
+  max-width: 700px;
   position: absolute;
   left: 0;
   right: 0;
@@ -143,9 +148,11 @@ td {
   justify-content: center;
 }
 .btn {
-  padding: none;
+  padding: 5px 10px;
   margin: 0 !important;
   margin-bottom: 20px !important;
+  display: inline-block;
+  text-align: center;
 }
 .blackBackBase {
   transition: background-color 0.5s;
@@ -166,7 +173,7 @@ td {
   box-shadow: 2px 2px 3px rgba(250, 250, 250, 0.7);
   border-radius: 30px;
   width: 80%;
-  max-width: 600px;
+  max-width: 800px;
   position: absolute;
   top: 15%;
   left: 0;
@@ -179,19 +186,26 @@ td {
   transform: translateY(0);
   opacity: 1;
 }
-.container {
+.flexcontainer {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+  width: 100%;
+  margin: 0 !important;
 }
 .flex-item {
-  width: 40%;
-  padding: 35px 0 25px;
-  margin: 20px;
+  text-align: left;
+  display: block;
+  width: 30%;
+  padding: 30px 0;
 }
 .flex-item:first-child img {
   border-radius: 30px;
   width: 100%;
   height: 100%;
+}
+.flex-item:last-child {
+  font-size: 16px;
+  width: 50%;
 }
 .resultTitle {
   font-size: 20px;
@@ -214,13 +228,17 @@ td {
 .animate__animated.animate__lightSpeedInLeft {
   --animate-duration: 1.2s;
 }
-@media (max-width: 600px) {
-  .container,
+@media (max-width: 800px) {
   .flex {
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    flex-wrap: wrap;
     margin: 0 auto;
     align-items: center;
+  }
+  .flexcontainer {
+    flex-direction: column;
+    justify-content: space-between;
   }
   .flex-item {
     margin: 0 auto;
@@ -229,8 +247,9 @@ td {
     width: 30%;
   }
   .flex-item:last-child {
-    width: 80%;
+    width: 70%;
     padding-top: 0;
+    margin: 0;
   }
   .flex button {
     width: 70%;

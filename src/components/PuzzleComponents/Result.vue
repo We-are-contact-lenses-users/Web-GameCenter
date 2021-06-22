@@ -43,11 +43,9 @@ button {
   font-size: 18px;
   width: 300px;
   height: 50px;
-  margin: 10px !important;
+  margin: 20px !important;
   padding: 0 !important;
 }
-
-
 
 button:hover {
   opacity: 0.8;
@@ -60,6 +58,6 @@ button:active {
   display: none;
 }
 .animate__animated.animate__fadeInUp {
-  --animate-duration: 1.5s;
+  --animate-duration: 1.0s;
 }
 </style>

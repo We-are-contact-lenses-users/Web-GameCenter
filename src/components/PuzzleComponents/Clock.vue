@@ -27,10 +27,8 @@ export default {
 }
 body {
   margin: 0 !important;
-}
-h1 {
-  padding: 15vh 0 10vh;
-  font-size: 60px;
+  width: 400px;
+  height: 400px;
 }
 button:hover {
   opacity: 0.8;
@@ -81,11 +79,11 @@ button:active {
 .needle:nth-child(14) {
   width: 110px;
   animation-duration: 3600s;
-  animation-delay: -3100s;
+  animation-delay: -4100s;
 }
 .needle:nth-child(15) {
   animation-duration: 86400s;
-  animation-delay: -40000s;
+  animation-delay: -50000s;
 }
 .scale {
   position: absolute;
