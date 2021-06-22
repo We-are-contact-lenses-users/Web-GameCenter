@@ -1,20 +1,18 @@
 <template>
   <div class="descriptionBox">
-    <h1>ランキング上位</h1>
-    <table class="result">
-      <tr v-for="(record, index) in PinBallScore" :key="index">
-        <td>第 {{ 1 + index }} 位</td>
-        <td>{{ record.name }}</td>
-        <td>{{ record.score }} pt</td>
-      </tr>
-    </table>
+    <h1>Rules</h1>
+    <div class="text">
+      <p>
+        タイミングを合わせて的に当てるゲームだよ！<br />的の点数は奥に行くにつれて高くなるよ！<br />5回の合計で高得点を目指そう！
+      </p>
+    </div>
     <button @click="active">戻る</button>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["PinBallScore"],
+  
   methods: {
     active() {
       this.$emit("back");
@@ -31,9 +29,10 @@ export default {
   left: 0;
   width: 80%;
   max-width: 600px;
-  background-color: snow;
+  color: white;
+  background-color: rgba(24, 21, 21, 0.336);
   border-radius: 20px;
-  border: 10px solid black;
+  border: 10px solid rgba(255, 255, 255, 0.918);
   opacity: 1;
   transition: opacity linear;
   transition-duration: 0.5s;
@@ -43,25 +42,22 @@ h1 {
   margin-top: 30px;
   font-size: 28px;
 }
-table {
-  margin-top: 20px;
-  width: 100%;
+.text {
+  width: 80%;
+  line-height: 1.7;
+  padding-top: 30px;
 }
-tr {
-  display: flex;
-  justify-content: space-between;
-}
-td {
-  width: 30%;
+.text p {
+  text-align: left;
   font-size: 24px;
-}
+} 
 button {
   display: inline-block;
   font-size: 20px;
   line-height: 2;
   height: 50px;
   opacity: 1;
-  margin: 20px auto;
+  margin: 30px auto;
   width: 150px;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.6);
   background-color: rgba(255, 255, 255, 0.6);

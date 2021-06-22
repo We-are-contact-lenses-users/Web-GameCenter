@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  props: ["playCount"],
+  props: ["goNext", "playCount"],
   data() {
     return {
       circle: [
@@ -40,6 +40,7 @@ export default {
       gun: {
         x: 235,
         y: 440,
+        dx: 0,
         tate: 60,
         yoko: 30,
       },
@@ -48,13 +49,65 @@ export default {
         y: 430,
         r: 10,
         speed: 0,
+        changeSpeed: 10,
+        dx: 0,
       },
-      speed: 20,
+      speed: 25,
       isHited: false,
       isPlaying: true,
     };
   },
+  watch: {
+    goNext() {
+      if (this.goNext) {
+        this.isHited = !this.isHited;
+        // this.$emit("restartGame");
+        let canvas2 = document.getElementById("canvas2");
+        let ctx2 = canvas2.getContext("2d");
+        ctx2.strokeStyle = "black";
+        this.retryReset();
+        this.$emit("finish");
+        this.reset(ctx2);
+        this.load(ctx2);
+      }
+    },
+    playCount() {
+      switch (this.playCount) {
+        case 0:
+          this.ball.dx = 0;
+          this.gun.dx = 0;
+          this.speed = 25;
+          this.ball.changeSpeed = 30
+          break
+        case 1:
+          this.ball.dx = 2;
+          this.gun.dx = 2;
+          this.speed = 25
+          this.ball.changeSpeed = 10
+          break;
+        case 2:
+          this.ball.dx = -3;
+          this.gun.dx = -3;
+          this.speed = 25
+          this.ball.changeSpeed = 10
+          break;
+        default:
+          this.ball.dx = -3;
+          this.gun.dx = -3;
+          this.speed = 15;
+          this.ball.changeSpeed = 6 
+          break;
+      }
+    },
+  },
   methods: {
+    retryReset() {
+      this.ball.speed = 0;
+      this.isPlaying = true;
+      this.ball.x = 250;
+      this.ball.y = 430;
+      this.gun.x = 235;
+    },
     makeGun(ctx2) {
       ctx2.fillStyle = "black";
       ctx2.fillRect(this.gun.x, this.gun.y, this.gun.yoko, this.gun.tate);
@@ -111,6 +164,7 @@ export default {
     collideCircle() {
       if (this.ball.y < 30) {
         this.isHited = !this.isHited;
+        this.$emit("mistake");
       }
       for (let i = 0; i < this.circle.length; i++) {
         if (
@@ -147,11 +201,25 @@ export default {
       // 当たり判定
       // this.collideCircle(ctx2);
       for (let i = 0; i < this.circle.length; i++) {
+        if (i < 2) {
+          if (this.circle[i].x === 160 || this.circle[i].x === 320) {
+            this.circle[i].speed *= Math.pow(
+              -1,
+              Math.floor(Math.random() * 1.5)
+            );
+          }
+        }
         if (this.circle[i].x > 470 || this.circle[i].x < 30) {
           this.circle[i].speed *= -1;
         }
         this.circle[i].x += this.circle[i].speed;
       }
+      if (this.ball.x > 400 || this.ball.x < 100) {
+        this.ball.dx *= -1;
+        this.gun.dx *= -1;
+      }
+      this.ball.x += this.ball.dx;
+      this.gun.x += this.gun.dx;
       this.collideCircle();
       // 押したときに始まるようにする
       this.ball.y -= this.ball.speed;
@@ -166,7 +234,7 @@ export default {
 
       // 終わり判定
       if (this.isHited) {
-        // this.$emit("finish");
+        this.$emit("finish");
         clearTimeout(move);
       }
     },
@@ -183,8 +251,9 @@ export default {
         return;
       }
       if (e.key === "Enter") {
-        this.ball.speed = 10;
+        this.ball.speed = this.ball.changeSpeed;
         this.isPlaying = false;
+        this.ball.dx = 0;
       }
     });
   },

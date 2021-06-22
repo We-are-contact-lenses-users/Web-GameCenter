@@ -17,7 +17,7 @@ export default {
       this.$emit("next");
     },
     makeCircle(ctx) {
-      ctx.fillStyle = `hsl(${this.RandomNumber()}, 70%, 20%)`;
+      ctx.fillStyle = `hsl(${this.RandomNumber()}, 70%, ${this.RandomNumber2()}%)`;
       ctx.beginPath();
       ctx.arc(
         this.x,
@@ -32,6 +32,9 @@ export default {
     RandomNumber() {
       this.color = Math.floor(Math.random() * 360);
       return this.color;
+    },
+    RandomNumber2() {
+      return Math.floor(Math.random() * 10) + 20;
     },
   },
   mounted() {

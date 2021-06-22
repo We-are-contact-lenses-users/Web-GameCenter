@@ -5,16 +5,23 @@
       <div class="gamebox">
         <game
           id="canvas2"
+          :goNext="goNext"
           :playCount="playCount"
+          @mistake="mistake"
           @plusPoint10="plusPoint10"
           @plusPoint20="plusPoint20"
           @plusPoint30="plusPoint30"
           @plusPoint50="plusPoint50"
+          @restartGame="tryAgain"
+          @finish="appear"
         ></game>
       </div>
     </div>
-    <div @click="next" class="item item3">Result</div>
-    <div class="item getpoint">{{ point }}pt!</div>
+    <div v-if="displayResult">
+      <div @click="tryAgain" class="item item3" v-if="playCount !== 4">Next</div>
+      <div @click="next" class="item item3" v-else>Result</div>
+      <div class="item getpoint">{{ getPoint }}pt!</div>
+    </div>
   </div>
 </template>
 
@@ -22,7 +29,12 @@
 import back from "./BackDisplay.vue";
 import game from "./GameDisplay.vue";
 export default {
-  props: ["point"],
+  watch: {
+    goNext() {
+      console.log(this.goNext)
+    }
+  },
+  props: ["point", "getPoint"],
   components: {
     back,
     game,
@@ -30,11 +42,25 @@ export default {
   data() {
     return {
       playCount: 0,
+      displayResult: false,
+      goNext: false
     };
   },
   methods: {
+    appear() {
+      if(this.displayResult) {
+        this.playCount++
+      }
+      this.displayResult = !this.displayResult;
+    },
+    tryAgain() {
+      this.goNext = !this.goNext
+    },
     next() {
       this.$emit("next");
+    },
+    mistake() {
+      this.$emit("mistake");
     },
     plusPoint10() {
       this.$emit("plusPoint10");
@@ -49,6 +75,9 @@ export default {
       this.$emit("plusPoint50");
     },
   },
+  created() {
+    this.playCount = 0
+  }
 };
 </script>
 
@@ -86,6 +115,7 @@ export default {
   opacity: 0.7;
   transition: opacity scale();
   transition-duration: 1s;
+  cursor: pointer;
 }
 .item3:hover {
   opacity: 1;

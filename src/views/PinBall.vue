@@ -2,7 +2,7 @@
   <div>
     <component
       :is="currentComponent[currentNumber]"
-      :pinBallScore="PinBallScore"
+      :PinBallScore="PinBallScore"
       :point="point"
       :collideCount="collideCount"
       :bonusPoint="bonusPoint"

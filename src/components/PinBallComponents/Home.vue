@@ -18,7 +18,7 @@
     <transition tag="template" name="fade">
       <result
         @back="changeResult"
-        :recordAll="recordAll"
+        :PinBallScore="PinBallScore"
         v-if="result"
       ></result>
     </transition>
@@ -36,7 +36,7 @@ export default {
     description,
     result,
   },
-  props: ["recordAll"],
+  props: ["PinBallScore"],
   data() {
     return {
       description: false,
