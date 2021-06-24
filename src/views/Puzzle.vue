@@ -16,6 +16,7 @@
 import home from "@/components/PuzzleComponents/Home.vue";
 import firstGame from "@/components/PuzzleComponents/IsPlaying.vue";
 import result from "@/components/PuzzleComponents/Result.vue";
+import firebase from "firebase";
 
 export default {
   components: {
@@ -32,7 +33,22 @@ export default {
       recordAll: [],
       currentNumber: 0,
       componentName: ["home", "firstGame", "result"],
+      PuzzleScore: [],
     };
+  },
+  created() {
+    firebase
+      .firestore()
+      .collection("Score")
+      .doc("PuzzleTop10")
+      .get()
+      .then((doc) => {
+        doc.data().Top10.forEach((Top10) => {
+          this.PuzzleScore.push({
+            ...Top10,
+          });
+        });
+      });
   },
   methods: {
     back() {
@@ -132,6 +148,16 @@ export default {
           }
         }
       }
+      this.PuzzleScore.sort((a, b) => {
+        return a.compareTime - b.compareTime;
+      });
+      this.PuzzleScore.splice(10, 1);
+
+      firebase
+        .firestore()
+        .collection("Score")
+        .doc("PuzzleTop10")
+        .set({ Top10: this.PuzzleScore });
       // firebaseいれてー
       // compareTimeで比較、recordで出力
     },

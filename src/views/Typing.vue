@@ -29,6 +29,7 @@
       </div>
       <div v-if="!startFlg && endFlg == true">
         ただいまの結果は{{ second }}秒でした！
+        <Button v-on:click="reset">リセット</Button>
       </div>
     </div>
   </div>
@@ -63,12 +64,12 @@ export default {
     firebase
       .firestore()
       .collection("Score")
-      .doc("TypingTop5")
+      .doc("TypingTop10")
       .get()
       .then((doc) => {
-        doc.data().Top5.forEach((Top5) => {
+        doc.data().Top10.forEach((Top10) => {
           this.TypingScore.push({
-            ...Top5,
+            ...Top10,
           });
         });
       });
@@ -108,6 +109,9 @@ export default {
         this.beforeTime = `${this.minute}分${this.second}秒`;
       }
     },
+    reset: function () {
+      this.$router.go({ path: this.$router.currentRoute.path, force: true });
+    },
   },
   mounted: function () {
     this.current_question = this.questions[0];
@@ -124,18 +128,21 @@ export default {
           this.finishTime = performance.now();
           this._display();
 
-          this.TypingScore.push({ score: this.second, name: this.$auth.currentUser.displayName });
+          this.TypingScore.push({
+            score: this.second,
+            name: this.$auth.currentUser.displayName,
+          });
 
           this.TypingScore.sort((a, b) => {
             return a.score - b.score;
           });
-          this.TypingScore.splice(5, 1);
+          this.TypingScore.splice(10, 1);
 
           firebase
             .firestore()
             .collection("Score")
-            .doc("TypingTop5")
-            .set({ Top5: this.TypingScore });
+            .doc("TypingTop10")
+            .set({ Top10: this.TypingScore });
         }
       }
     },

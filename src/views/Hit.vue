@@ -33,12 +33,12 @@ export default {
     firebase
       .firestore()
       .collection("Score")
-      .doc("HitTop5")
+      .doc("HitTop10")
       .get()
       .then((doc) => {
-        doc.data().Top5.forEach((Top5) => {
+        doc.data().Top10.forEach((Top10) => {
           this.HitScore.push({
-            ...Top5,
+            ...Top10,
           });
         });
       });
@@ -95,18 +95,21 @@ export default {
       }
       console.log(this.recordAll);
 
-      this.HitScore.push({ score: this.point, name: this.$auth.currentUser.displayName });
+      this.HitScore.push({
+        score: this.point,
+        name: this.$auth.currentUser.displayName,
+      });
 
       this.HitScore.sort((a, b) => {
         return b.score - a.score;
       });
-      this.HitScore.splice(5, 1);
+      this.HitScore.splice(10, 1);
 
       firebase
         .firestore()
         .collection("Score")
-        .doc("HitTop5")
-        .set({ Top5: this.HitScore });
+        .doc("HitTop10")
+        .set({ Top10: this.HitScore });
     },
   },
 };
