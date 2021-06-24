@@ -80,76 +80,12 @@ export default {
       } else {
         this.beforeTime = `${minute}分${second}秒`;
       }
-      if (!this.recordAll.length) {
-        this.recordAll.push({
-          month: new Date().getMonth() + 1,
-          date: new Date().getDate(),
-          record: this.beforeTime,
-          compareTime: Number(totalTime),
-        });
-      } else if (this.recordAll.length < 10) {
-        let changeRecordAll = false;
-        for (let i = 0; i < this.recordAll.length; i++) {
-          if (i === 0 && this.recordAll[i].compareTime > totalTime) {
-            changeRecordAll = true;
-            this.recordAll.unshift({
-              month: new Date().getMonth() + 1,
-              date: new Date().getDate(),
-              record: this.beforeTime,
-              compareTime: Number(totalTime),
-            });
-          }
-          if (
-            this.recordAll[i].compareTime > totalTime &&
-            changeRecordAll === false
-          ) {
-            changeRecordAll = true;
-            this.recordAll.splice(i, 0, {
-              month: new Date().getMonth() + 1,
-              date: new Date().getDate(),
-              record: this.beforeTime,
-              compareTime: Number(totalTime),
-            });
-          }
-        }
-        if (changeRecordAll === false) {
-          this.recordAll.push({
-            month: new Date().getMonth() + 1,
-            date: new Date().getDate(),
-            record: this.beforeTime,
-            compareTime: Number(totalTime),
-          });
-        }
-      } else if (this.recordAll.length === 10) {
-        let changeRecordAll = false;
-        for (let i = 0; i < this.recordAll.length; i++) {
-          if (i === 0 && this.recordAll[i].compareTime >= totalTime) {
-            changeRecordAll = true;
-            this.recordAll.unshift({
-              month: new Date().getMonth() + 1,
-              date: new Date().getDate(),
-              record: this.beforeTime,
-              compareTime: Number(totalTime),
-            });
-            this.recordAll.pop();
-          }
-          if (
-            this.recordAll[i].compareTime >= totalTime &&
-            changeRecordAll === false
-          ) {
-            changeRecordAll = true;
-            this.recordAll.pop();
-            this.recordAll.splice(i, 0, {
-              month: new Date().getMonth() + 1,
-              date: new Date().getDate(),
-              record: this.beforeTime,
-              compareTime: Number(totalTime),
-            });
-          }
-        }
-      }
+      this.PuzzleScore.push({
+        score: totalTime,
+        name: this.$auth.currentUser.displayName,
+      });
       this.PuzzleScore.sort((a, b) => {
-        return a.compareTime - b.compareTime;
+        return a.score - b.score;
       });
       this.PuzzleScore.splice(10, 1);
 
