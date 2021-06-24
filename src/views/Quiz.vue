@@ -53,6 +53,7 @@
               >
               <hr />
             </div>
+            <Button v-on:click="reset">リセット</Button>
           </div>
         </div>
       </div>
@@ -66,7 +67,7 @@ export default {
     return {
       answers: [],
       questionIndex: 0,
-      answer: [1, 0, 1],
+      answer: [],
       questions: [
         {
           question: "囲碁の石の大きさはどっちが大きい？",
@@ -84,17 +85,107 @@ export default {
           answers: ["OK", "オーケストラ", "おけら"],
           answer: 1,
         },
+        {
+          question: "お菓子のPRETZはどこの会社のお菓子？",
+          answers: ["グリコ", "森永", "明治"],
+          answer: 0,
+        },
+        {
+          question:
+            "一石二鳥を英語で表した場合の()の中は？ ( ) two birds with one stone.",
+          answers: ["attack", "hit", "kill"],
+          answer: 2,
+        },
+        {
+          question: "吉田沙保里のレスリング世界大会は何連覇？",
+          answers: ["6", "11", "16"],
+          answer: 2,
+        },
+        {
+          question: "日本の中で一番背が高い仏像がいる都道府県は？",
+          answers: ["神奈川県", "茨城県", "奈良県"],
+          answer: 1,
+        },
+        {
+          question: "山のつく県はいくつ？",
+          answers: ["6", "7", "8"],
+          answer: 0,
+        },
+        {
+          question: "馬肉の別名は？",
+          answers: ["ボタン", "モミジ", "サクラ"],
+          answer: 2,
+        },
+        {
+          question: "イタリア発祥の料理は？",
+          answers: ["ドリア", "カルパッチョ", "プリン・アラモード"],
+          answer: 1,
+        },
+        {
+          question: "日本の郵便ポストの昔の色は？",
+          answers: ["青色", "茶色", "黒色"],
+          answer: 2,
+        },
+        {
+          question: "キリンの平均睡眠時間は？",
+          answers: ["20分", "2時間", "12時間"],
+          answer: 0,
+        },
+        {
+          question: "ロダン作の彫刻「考える人」は何を考えている？",
+          answers: ["平和とは何か", "人生とは何か", "特に何も考えていない"],
+          answer: 2,
+        },
+        {
+          question: "犬の嗅覚は人間の約何倍？",
+          answers: ["百倍", "一万倍", "百万倍"],
+          answer: 2,
+        },
+        {
+          question: "ハリセンボンの針は実際は何本？",
+          answers: ["約350本", "約500本", "約1000本"],
+          answer: 0,
+        },
+        {
+          question: "実際に存在する料理はどれ？",
+          answers: ["にっこり団子", "ばかうけ団子", "へらへら団子"],
+          answer: 2,
+        },
+        {
+          question: "アブラカタブラの意味は？",
+          answers: ["こんにちは", "花粉症退治", "悪霊退散"],
+          answer: 1,
+        },
+        {
+          question: "ハイジャックの語源は？",
+          answers: [
+            "高いところで襲撃するから",
+            "ジャックという名前が多かったから",
+            "高い金銭を要求するから",
+          ],
+          answer: 1,
+        },
+        {
+          question: "六つ葉のクローバーに秘められた幸運とは？",
+          answers: ["地位・名声", "安産", "金運"],
+          answer: 0,
+        },
+        {
+          question: "孫の手の「孫」とは誰のこと？",
+          answers: ["孫", "子供", "美女"],
+          answer: 2,
+        },
       ],
       startFlg: false,
       falseCount: 0,
-      second: "",
-      result: "0",
-      totalTime: "",
-      minute: "",
+      second: 0,
+      result: 0,
+      totalTime: 0,
+      minute: 0,
       recordAll: [],
-      finishTime: "",
-      startTime: "",
-      beforeTime: "",
+      finishTime: 0,
+      startTime: 0,
+      beforeTime: 0,
       QuizScore: [],
     };
   },
@@ -102,16 +193,30 @@ export default {
     firebase
       .firestore()
       .collection("Score")
-      .doc("QuizTop5")
+      .doc("QuizTop10")
       .get()
       .then((doc) => {
-        doc.data().Top5.forEach((Top5) => {
+        doc.data().Top10.forEach((Top10) => {
           this.QuizScore.push({
-            ...Top5,
+            ...Top10,
           });
         });
       });
+    const shuffle = ([...array]) => {
+      for (let i = array.length - 1; i >= 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    };
+    this.questions = shuffle(this.questions);
+    this.questions = this.questions.slice(15);
+
+    for (let j = 0; j < this.questions.length; j++) {
+      this.answer[j] = this.questions[j].answer;
+    }
   },
+
   methods: {
     addAnswer: function (index) {
       this.answers.push(index);
@@ -127,19 +232,22 @@ export default {
             this.falseCount += 1;
           }
         }
-        this.result = this.falseCount * 5 + this.second;
-        this.QuizScore.push({ score: this.result, name: this.$auth.currentUser.displayName });
+        this.result = Number(this.falseCount) * 5 + Number(this.second);
+        this.QuizScore.push({
+          score: this.result,
+          name: this.$auth.currentUser.displayName,
+        });
 
         this.QuizScore.sort((a, b) => {
           return a.score - b.score;
         });
-        this.QuizScore.splice(5, 1);
+        this.QuizScore.splice(10, 1);
 
         firebase
           .firestore()
           .collection("Score")
-          .doc("QuizTop5")
-          .set({ Top5: this.QuizScore });
+          .doc("QuizTop10")
+          .set({ Top10: this.QuizScore });
       }
     },
     gameStart: function () {
@@ -147,10 +255,10 @@ export default {
       this.startTime = performance.now();
     },
     _display() {
-      this.totalTime = ((this.finishTime - this.startTime) / 1000).toFixed(1);
-      this.minute = Math.floor(this.totalTime / 60);
-      this.second = Math.floor(this.totalTime % 60);
-      this.result = this.second;
+      this.totalTime = ((this.finishTime - this.startTime) / 1000).toFixed(2);
+
+      this.second = this.totalTime;
+
       if (this.minute === 0) {
         this.beforeTime = `${this.second}秒`;
       } else {
@@ -164,6 +272,9 @@ export default {
       if (this.recordAll.length === 6) {
         this.recordAll.splice(0, 1);
       }
+    },
+    reset: function () {
+      this.$router.go({ path: this.$router.currentRoute.path, force: true });
     },
   },
   computed: {

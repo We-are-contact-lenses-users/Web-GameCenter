@@ -42,12 +42,12 @@ export default {
     firebase
       .firestore()
       .collection("Score")
-      .doc("PinBallTop5")
+      .doc("PinBallTop10")
       .get()
       .then((doc) => {
-        doc.data().Top5.forEach((Top5) => {
+        doc.data().Top10.forEach((Top10) => {
           this.PinBallScore.push({
-            ...Top5,
+            ...Top10,
           });
         });
       });
@@ -133,18 +133,21 @@ export default {
           this.recordAll.splice(i, 0, this.point);
         }
       }
-      this.PinBallScore.push({ score: this.point, name: this.$auth.currentUser.displayName });
+      this.PinBallScore.push({
+        score: this.point,
+        name: this.$auth.currentUser.displayName,
+      });
 
       this.PinBallScore.sort((a, b) => {
         return b.score - a.score;
       });
-      this.PinBallScore.splice(5, 1);
+      this.PinBallScore.splice(10, 1);
 
       firebase
         .firestore()
         .collection("Score")
-        .doc("PinBallTop5")
-        .set({ Top5: this.PinBallScore });
+        .doc("PinBallTop10")
+        .set({ Top10: this.PinBallScore });
     },
   },
 };
