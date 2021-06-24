@@ -3,7 +3,7 @@
     <StarBackGround></StarBackGround>
     <div class="top-menu">
       <h1 class="title">Ranking</h1>
-      <ul class="rankings">
+      <!-- <ul class="rankings">
         <li
           v-for="(ranking, index) in rankings"
           :key="index"
@@ -18,189 +18,278 @@
             </tr>
           </table>
         </li>
-      </ul>
+      </ul> -->
     </div>
   </div>
 </template>
 <script>
 import StarBackGround from "@/components/StarBackGround.vue";
-// import firebase from "firebase";
+import firebase from "firebase";
 
 export default {
   // ここのデータをfirebaseから引っ張り出す
   data() {
     return {
-      rankings: {
-        allranking: {
-          title: "総合ランキング",
-          first: {
-            rank: "1位",
-            person: "入賞者",
-            result: 0,
-          },
-          second: {
-            rank: "2位",
-            person: "入賞者",
-            result: 0,
-          },
-          third: {
-            rank: "3位",
-            person: "入賞者",
-            result: 0,
-          },
-          fourth: {
-            rank: "4位",
-            person: "入賞者",
-            result: 0,
-          },
-          fifth: {
-            rank: "5位",
-            person: "入賞者",
-            result: 0,
-          },
+      titles: [
+        "総合ランキング",
+        "Puzzle Game",
+        "Typing Game",
+        "Pinball Game",
+        "Quiz Game",
+        "Sniper Game",
+      ],
+
+      allranking: [
+        {
+          rank: "1位",
+          person: "入賞者",
+          result: 0,
         },
-        puzzlegame: {
-          title: "Puzzle Game",
-          first: {
-            rank: "1位",
-            person: "入賞者",
-            result: 0,
-          },
-          second: {
-            rank: "2位",
-            person: "入賞者",
-            result: 0,
-          },
-          third: {
-            rank: "3位",
-            person: "入賞者",
-            result: 0,
-          },
-          fourth: {
-            rank: "4位",
-            person: "入賞者",
-            result: 0,
-          },
-          fifth: {
-            rank: "5位",
-            person: "入賞者",
-            result: 0,
-          },
+        {
+          rank: "2位",
+          person: "入賞者",
+          result: 0,
         },
-        typinggame: {
-          title: "Typing Game",
-          first: {
-            rank: "1位",
-            person: "入賞者",
-            result: 0,
-          },
-          second: {
-            rank: "2位",
-            person: "入賞者",
-            result: 0,
-          },
-          third: {
-            rank: "3位",
-            person: "入賞者",
-            result: 0,
-          },
-          fourth: {
-            rank: "4位",
-            person: "入賞者",
-            result: 0,
-          },
-          fifth: {
-            rank: "5位",
-            person: "入賞者",
-            result: 0,
-          },
+        {
+          rank: "3位",
+          person: "入賞者",
+          result: 0,
         },
-        pinballgame: {
-          title: "Pinball Game",
-          first: {
-            rank: "1位",
-            person: "入賞者",
-            result: 0,
-          },
-          second: {
-            rank: "2位",
-            person: "入賞者",
-            result: 0,
-          },
-          third: {
-            rank: "3位",
-            person: "入賞者",
-            result: 0,
-          },
-          fourth: {
-            rank: "4位",
-            person: "入賞者",
-            result: 0,
-          },
-          fifth: {
-            rank: "5位",
-            person: "入賞者",
-            result: 0,
-          },
+        {
+          rank: "4位",
+          person: "入賞者",
+          result: 0,
         },
-        quizgame: {
-          title: "Quiz Game",
-          first: {
-            rank: "1位",
-            person: "入賞者",
-            result: 0,
-          },
-          second: {
-            rank: "2位",
-            person: "入賞者",
-            result: 0,
-          },
-          third: {
-            rank: "3位",
-            person: "入賞者",
-            result: 0,
-          },
-          fourth: {
-            rank: "4位",
-            person: "入賞者",
-            result: 0,
-          },
-          fifth: {
-            rank: "5位",
-            person: "入賞者",
-            result: 0,
-          },
+        {
+          rank: "5位",
+          person: "入賞者",
+          result: 0,
         },
-        snipergame: {
-          title: "Sniper Game",
-          first: {
-            rank: "1位",
-            person: "入賞者",
-            result: 0,
-          },
-          second: {
-            rank: "2位",
-            person: "入賞者",
-            result: 0,
-          },
-          third: {
-            rank: "3位",
-            person: "入賞者",
-            result: 0,
-          },
-          fourth: {
-            rank: "4位",
-            person: "入賞者",
-            result: 0,
-          },
-          fifth: {
-            rank: "5位",
-            person: "入賞者",
-            result: 0,
-          },
+      ],
+      quizgame: [
+        {
+          rank: "1位",
+          person: "入賞者",
+          result: 0,
         },
-      },
+        {
+          rank: "2位",
+          person: "入賞者",
+          result: 0,
+        },
+        {
+          rank: "3位",
+          person: "入賞者",
+          result: 0,
+        },
+        {
+          rank: "4位",
+          person: "入賞者",
+          result: 0,
+        },
+        {
+          rank: "5位",
+          person: "入賞者",
+          result: 0,
+        },
+      ],
+      typinggame: [
+        {
+          rank: "1位",
+          person: "入賞者",
+          result: 0,
+        },
+        {
+          rank: "2位",
+          person: "入賞者",
+          result: 0,
+        },
+        {
+          rank: "3位",
+          person: "入賞者",
+          result: 0,
+        },
+        {
+          rank: "4位",
+          person: "入賞者",
+          result: 0,
+        },
+        {
+          rank: "5位",
+          person: "入賞者",
+          result: 0,
+        },
+      ],
+      pinballgame: [
+        {
+          rank: "1位",
+          person: "入賞者",
+          result: 0,
+        },
+        {
+          rank: "2位",
+          person: "入賞者",
+          result: 0,
+        },
+        {
+          rank: "3位",
+          person: "入賞者",
+          result: 0,
+        },
+        {
+          rank: "4位",
+          person: "入賞者",
+          result: 0,
+        },
+        {
+          rank: "5位",
+          person: "入賞者",
+          result: 0,
+        },
+      ],
+      puzzlegame: [
+        {
+          rank: "1位",
+          person: "入賞者",
+          result: 0,
+        },
+        {
+          rank: "2位",
+          person: "入賞者",
+          result: 0,
+        },
+        {
+          rank: "3位",
+          person: "入賞者",
+          result: 0,
+        },
+        {
+          rank: "4位",
+          person: "入賞者",
+          result: 0,
+        },
+        {
+          rank: "5位",
+          person: "入賞者",
+          result: 0,
+        },
+      ],
+      snipergame: [
+        {
+          rank: "1位",
+          person: "入賞者",
+          result: 0,
+        },
+        {
+          rank: "2位",
+          person: "入賞者",
+          result: 0,
+        },
+        {
+          rank: "3位",
+          person: "入賞者",
+          result: 0,
+        },
+        {
+          rank: "4位",
+          person: "入賞者",
+          result: 0,
+        },
+        {
+          rank: "5位",
+          person: "入賞者",
+          result: 0,
+        },
+      ],
+
+      HitScore: [],
+      PinBallScore: [],
+      PuzzleScore: [],
+      QuizScore: [],
+      TypingScore: [],
     };
+  },
+  created() {
+    firebase
+      .firestore()
+      .collection("Score")
+      .doc("HitTop10")
+      .get()
+      .then((doc) => {
+        doc.data().Top10.forEach((Top10) => {
+          this.HitScore.push({
+            ...Top10,
+          });
+        });
+        for (let i = 0; i < 5; i++) {
+          this.snipergame[i].result = this.HitScore[i].score;
+          this.snipergame[i].person = this.HitScore[i].name;
+        }
+      });
+    firebase
+      .firestore()
+      .collection("Score")
+      .doc("PinBallTop10")
+      .get()
+      .then((doc) => {
+        doc.data().Top10.forEach((Top10) => {
+          this.PinBallScore.push({
+            ...Top10,
+          });
+        });
+        for (let i = 0; i < 5; i++) {
+          this.pinballgame[i].result = this.PinBallScore[i].score;
+          this.pinballgame[i].person = this.PinBallScore[i].name;
+        }
+      });
+    firebase
+      .firestore()
+      .collection("Score")
+      .doc("PuzzleTop10")
+      .get()
+      .then((doc) => {
+        doc.data().Top10.forEach((Top10) => {
+          this.PuzzleScore.push({
+            ...Top10,
+          });
+        });
+        for (let i = 0; i < 5; i++) {
+          this.puzzlegame[i].result = this.PuzzleScore[i].score;
+          this.puzzlegame[i].person = this.PuzzleScore[i].name;
+        }
+      });
+    firebase
+      .firestore()
+      .collection("Score")
+      .doc("QuizTop10")
+      .get()
+      .then((doc) => {
+        doc.data().Top10.forEach((Top10) => {
+          this.QuizScore.push({
+            ...Top10,
+          });
+        });
+        for (let i = 0; i < 5; i++) {
+          this.quizgame[i].result = this.QuizScore[i].score;
+          this.quizgame[i].person = this.QuizScore[i].name;
+        }
+      });
+    firebase
+      .firestore()
+      .collection("Score")
+      .doc("TypingTop10")
+      .get()
+      .then((doc) => {
+        doc.data().Top10.forEach((Top10) => {
+          this.TypingScore.push({
+            ...Top10,
+          });
+        });
+        for (let i = 0; i < 5; i++) {
+          this.typinggame[i].result = this.TypingScore[i].score;
+          this.typinggame[i].person = this.TypingScore[i].name;
+        }
+      });
   },
   components: {
     StarBackGround,
