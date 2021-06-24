@@ -53,6 +53,8 @@ export default {
   display: flex;
   flex-direction: column;
   z-index: 1000;
+  font-family: 'Dancing Script', monospace;
+  letter-spacing: 1px;
 }
 
 .header .linkitem {

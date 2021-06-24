@@ -289,7 +289,7 @@ span:nth-child(10) {
 }
 .signin {
   color: white;
-  font-size: 40px;
+  font-size: 50px;
   display: inline-block;
   padding: 10px 20px;
   border-radius: 20px;
@@ -301,6 +301,8 @@ span:nth-child(10) {
   width: 100%;
   background: transparent;
   border: none;
+  font-family: "Dancing Script", monospace;
+  letter-spacing: 1px;
 }
 .signin:hover {
   color: yellow;

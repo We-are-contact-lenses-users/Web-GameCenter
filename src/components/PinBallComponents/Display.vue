@@ -44,7 +44,6 @@ export default {
 .flex {
   display: flex;
   justify-content: center;
-  /* flex-direction: column; */
   width: 625px;
   height: 90%;
   border: 10px solid rgba(0, 0, 0, 0.7);
@@ -52,14 +51,26 @@ export default {
 }
 .display {
   width: 500px;
-  background-color: rgba(230, 176, 252, 0.3);
+  background-color: rgba(241, 234, 243, 0.404);
 }
 .side-menu {
-  color: aliceblue;
-  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  background: rgba(7, 6, 6, 0.76);
   border-left: 3px solid rgba(0, 0, 0, 0.7);
   width: 125px;
+  height: 100%;
   position: relative;
+}
+.side-menu h2 {
+  font-size: 28px;
+  padding-top: 15px;
+}
+.side-menu h3 {
+  font-size: 24px;
+}
+.side-menu p {
+  font-size: 15px;
+  padding: 2px;
 }
 .side-menu-item {
   position: absolute;

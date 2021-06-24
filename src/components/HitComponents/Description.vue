@@ -1,9 +1,9 @@
 <template>
   <div class="descriptionBox">
-    <h1>ゲームの説明</h1>
+    <h1>Rules</h1>
     <div class="text">
       <p>
-        このゲームは矢印キーを使ってボールをはじいて得点するゲームです！<br />得点を獲得するとボールの角度が変わるのに気を付けて！<br />失敗するまで終わらないのでどんどん得点を重ねていこう！
+        タイミングを合わせて的に当てるゲームだよ！<br />的の点数は奥に行くにつれて高くなるよ！<br />5回の合計で高得点を目指そう！
       </p>
     </div>
     <button @click="active">戻る</button>
@@ -29,9 +29,10 @@ export default {
   left: 0;
   width: 80%;
   max-width: 600px;
-  background-color: snow;
+  color: white;
+  background-color: rgba(24, 21, 21, 0.336);
   border-radius: 20px;
-  border: 10px solid black;
+  border: 10px solid rgba(255, 255, 255, 0.918);
   opacity: 1;
   transition: opacity linear;
   transition-duration: 0.5s;
@@ -60,6 +61,7 @@ button {
   width: 150px;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.6);
   background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
 }
 button:hover {
   cursor: pointer;
