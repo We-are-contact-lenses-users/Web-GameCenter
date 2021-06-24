@@ -13,6 +13,7 @@ Vue.directive("button", function (el) {
   el.style.boxShadow = "0 3px 3px rgba(0,0,0,0.7)";
   el.style.margin = "70px 20px";
   el.style.cursor = "pointer";
+  el.style.width = "250px"
 });
 
 new Vue({

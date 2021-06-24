@@ -98,8 +98,8 @@ export default {
 }
 
 .loadingDisplay {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 630px;
   max-width: 800px;
   position: relative;
 }

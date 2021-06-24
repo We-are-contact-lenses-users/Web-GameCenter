@@ -6,9 +6,9 @@
         <p class="backHome" @click="back">home</p>
         <h1>Let's Puzzle!</h1>
         <div class="border animate__animated animate__fadeIn">
-          <div class="puzzleContainer" >
+          <div class="puzzleContainer" key="1">
             <div
-              v-for="(block, index) in blocks"
+              v-for="(block, index) in newblocks"
               :key="index"
               :class="[
                 'game',
@@ -24,7 +24,7 @@
       <!-- ここまで -->
       <div v-else key="2">
         <h2 class="title">Clear!!</h2>
-        <button v-button @click="next">result</button>
+        <button v-button class="resultButton" @click="next">result</button>
       </div>
     </transition>
   </div>
@@ -34,13 +34,14 @@
 export default {
   created() {
     console.log(this.blocks)
+    this._shuffle();
   },
   data() {
     return {
       className: {
         block: "",
       },
-      isPlaying: true,
+      isPlaying: false,
       newblocks: [],
       idChecker: [],
       blocks: [
@@ -116,6 +117,7 @@ export default {
       }
     },
     moveBlock(a, b) {
+      console.log('click!')
       // a:クリックしたもののid, b:クリックしたものの配列の順番
       let nineNumberPlace = this.newblocks.findIndex((block) => block.id === 9);
       // 上下左右のみ動く様にする
@@ -155,6 +157,7 @@ export default {
       }
     },
   },
+  
 };
 </script>
 
@@ -172,6 +175,10 @@ body {
 h1 {
   padding: 0 10vh 5vh;
   font-size: 60px;
+}
+.resultButton {
+  display: inline-block;
+  text-align: center;
 }
 button:hover {
   opacity: 0.8;

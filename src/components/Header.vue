@@ -44,11 +44,11 @@ export default {
 
 <style scoped>
 .header {
-  position: absolute;
-  height: 100vh;
+  position: fixed;
+  height: 100%;
   line-height: 60px;
   background: rgba(70, 39, 56, 0.651);
-  width: 100vw;
+  width: 100%;
   font-size: 24px;
   display: flex;
   flex-direction: column;

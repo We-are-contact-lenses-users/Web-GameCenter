@@ -58,10 +58,12 @@ export default {
   position: absolute;
 }
 .item2 {
+  font-family: "Nosifer", cursive;
   top: calc(50% - 50px);
+  font-size: 44px;
+  color: rgb(227, 238, 130);
   left: 0;
   right: 0;
-  color: white;
 }
 .item3 {
   top: calc(80% - 50px);
@@ -85,8 +87,7 @@ export default {
   z-index: 1;
   line-height: 2;
   color: white;
-  font-size: 28px;
-  font-weight: bold;
+  font-size: 32px;
   opacity: 0.7;
   transition: opacity scale();
   transition-duration: 1s;

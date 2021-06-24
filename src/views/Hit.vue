@@ -115,6 +115,7 @@ export default {
   text-align: center;
   align-items: center;
   box-sizing: border-box;
+ 
 }
 .frame {
   width: 100vw;
