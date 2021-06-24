@@ -77,25 +77,25 @@ export default {
           this.ball.dx = 0;
           this.gun.dx = 0;
           this.speed = 25;
-          this.ball.changeSpeed = 30
+          this.ball.changeSpeed = 10
           break
         case 1:
           this.ball.dx = 2;
           this.gun.dx = 2;
-          this.speed = 25
-          this.ball.changeSpeed = 10
+          this.speed = 20
+          this.ball.changeSpeed = 8
           break;
         case 2:
           this.ball.dx = -3;
           this.gun.dx = -3;
-          this.speed = 25
-          this.ball.changeSpeed = 10
+          this.speed = 20
+          this.ball.changeSpeed = 8
           break;
         default:
           this.ball.dx = -3;
           this.gun.dx = -3;
           this.speed = 15;
-          this.ball.changeSpeed = 6 
+          this.ball.changeSpeed = 7
           break;
       }
     },
@@ -169,7 +169,7 @@ export default {
       for (let i = 0; i < this.circle.length; i++) {
         if (
           Math.abs(this.circle[i].y - this.ball.y) <
-          this.circle[i].r + this.ball.r
+          this.circle[i].r + this.ball.r && this.circle[i].y < this.ball.y
         ) {
           if (
             Math.abs(this.circle[i].x - this.ball.x) <

@@ -4,7 +4,7 @@
     <div class="top-menu">
       <h1 class="title">ReviewPage</h1>
       <ul class="buttons">
-        <li @click="displayText(collectionName[0])">Total</li>
+        <li @click="displayText(collectionName[0])" class="isselected">Total</li>
         <li @click="displayText(collectionName[1])">Pinballgame</li>
         <li @click="displayText(collectionName[2])">Typinggame</li>
         <li @click="displayText(collectionName[3])">Puzzlegame</li>
@@ -109,6 +109,8 @@ export default {
 <style scoped>
 #app {
   position: relative;
+  font-family: 'Dancing Script', monospace;
+  letter-spacing: 1px;
 }
 .top-menu {
   position: absolute;
@@ -207,6 +209,7 @@ export default {
   display: inline-block;
   max-width: 90%;
   overflow-wrap: break-word;
+  font-family: cursive, monospace;
 }
 .flex {
   margin-left: 0;

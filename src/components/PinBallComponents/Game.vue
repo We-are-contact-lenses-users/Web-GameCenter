@@ -12,8 +12,8 @@ export default {
         x: 250,
         y: 160,
         r: 10,
-        dx: 5,
-        dy: 10,
+        dx: 4,
+        dy: 5,
       },
       bar: {
         x: 220,
@@ -43,12 +43,7 @@ export default {
           r: 5,
         },
         {
-          x: 205,
-          y: 105,
-          r: 5,
-        },
-        {
-          x: 295,
+          x: 250,
           y: 105,
           r: 5,
         },
@@ -58,12 +53,12 @@ export default {
           r: 5,
         },
         {
-          x: 140,
+          x: 150,
           y: 170,
           r: 5,
         },
         {
-          x: 360,
+          x: 350,
           y: 170,
           r: 5,
         },
@@ -155,7 +150,7 @@ export default {
       ],
       lineLength: 60,
       point: 0,
-      speed: 60,
+      speed: 25,
     };
   },
   methods: {
@@ -251,7 +246,6 @@ export default {
           this.ball.dx += -5 + Math.floor(Math.random() * 10);
           this.ball.dx *= -1;
           this.ball.dy *= -1;
-          console.log("hitLeft");
         }
         if (
           this.ball.x > this.bar.x &&
@@ -269,7 +263,6 @@ export default {
           this.ball.dx += -5 + Math.floor(Math.random() * 10);
           this.ball.dx *= -1;
           this.ball.dy *= -1;
-          console.log("hitRight");
         }
       }
     },
@@ -283,11 +276,11 @@ export default {
         ) {
           if (Math.abs(this.ball.x - this.pin[i].x) >= this.pin[i].r) {
             if (this.ball.x < this.pin[i].x && this.ball.dx > 0) {
-              this.ball.dx -= 1;
+              this.ball.dx -= 0.3;
               this.ball.dx *= -1;
             }
             if (this.ball.x > this.pin[i].x && this.ball.dx < 0) {
-              this.ball.dx += 1;
+              this.ball.dx += 0.3;
               this.ball.dx *= -1;
             }
           }
@@ -335,7 +328,7 @@ export default {
       }
       console.log("ポイント追加");
       this.ball.dx =
-        (Math.floor(Math.random() * 7) + 5) *
+        (Math.floor(Math.random() * 5) + 3) *
         Math.pow(-1, Math.floor(Math.random() * 2));
       if (this.ball.x > 0 && this.ball.x <= 100) {
         this.$emit("plus10");
@@ -345,7 +338,7 @@ export default {
       }
       if (this.ball.x > 200 && this.ball.x <= 300) {
         this.ball.dx =
-          (Math.floor(Math.random() * 10) + 3) *
+          (Math.floor(Math.random() * 6) + 2) *
           Math.pow(-1, Math.floor(Math.random() * 2));
         this.$emit("plus30");
       }
@@ -407,7 +400,7 @@ export default {
     let ctx = canvas.getContext("2d");
     let isStart = false;
     this.ball.dx =
-      (Math.floor(Math.random() * 5) + 5) *
+      (Math.floor(Math.random() * 4) + 3) *
       Math.pow(-1, Math.floor(Math.random() * 2));
     this.reset(ctx);
     // バーを動かす設定

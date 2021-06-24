@@ -5,6 +5,14 @@
       <h1 class="title">Post your message</h1>
       <div class="postBox">
         <form class="form">
+          <div
+            :class="{
+              sendOK: displaySendMessage,
+              notSend: !displaySendMessage,
+            }"
+          >
+            Complete!
+          </div>
           <label for="text">投稿内容</label>
           <textarea
             id="text"
@@ -94,6 +102,7 @@ export default {
   },
   data() {
     return {
+      displaySendMessage: false,
       reviewText: "",
       reviewType: "",
       firebaseDatas: [
@@ -140,14 +149,22 @@ export default {
           this.reviewType = "";
         }
       });
+      this.displaySendMessage = true;
       this.reviewText = "";
     },
+  },
+  mounted() {
+    window.addEventListener("keydown", () => {
+      this.displaySendMessage = false;
+    });
   },
 };
 </script>
 <style scoped>
 #app {
   position: relative;
+  font-family: 'Dancing Script', monospace;
+  letter-spacing: 1px;
 }
 .top-menu {
   position: absolute;
@@ -169,6 +186,23 @@ export default {
 .form {
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+.sendOK {
+  position: absolute;
+  top: 40%;
+  color: rgba(253, 174, 55, 0.904);
+  transition: all 0.5s;
+  letter-spacing: 1px;
+  font-size: 40px;
+}
+.notSend {
+  position: absolute;
+  top: 40%;
+  opacity: 0;
+  transition: all 0.5s;
+  letter-spacing: 1px;
+  font-size: 40px;
 }
 .form label {
   font-size: 20px;
@@ -207,7 +241,7 @@ export default {
   padding: 0;
   display: inline-block;
   width: 80%;
-  font-size: 14px;
+  font-size: 18px;
   transition: all 1s;
 }
 .form .label:hover {
@@ -219,14 +253,15 @@ export default {
   text-decoration: none;
   border: none;
   background: none;
-  font-size: 24px;
+  font-size: 30px;
   width: 250px;
   margin: 30px;
   color: antiquewhite;
   transition: all 1s;
+  font-family: "Dancing Script", monospace;
 }
 .button:hover {
   color: yellow;
-  font-size: 30px;
+  font-size: 36px;
 }
 </style>
