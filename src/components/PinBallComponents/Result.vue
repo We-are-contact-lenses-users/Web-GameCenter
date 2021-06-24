@@ -2,9 +2,10 @@
   <div class="descriptionBox">
     <h1>ランキング上位</h1>
     <table class="result">
-      <tr v-for="(record, index) in recordAll" :key="index">
+      <tr v-for="(record, index) in PinBallScore" :key="index">
         <td>第 {{ 1 + index }} 位</td>
-        <td>{{ record }} pt</td>
+        <td>{{ record.name }}</td>
+        <td>{{ record.score }} pt</td>
       </tr>
     </table>
     <button @click="active">戻る</button>
@@ -13,7 +14,7 @@
 
 <script>
 export default {
-  props: ["recordAll"],
+  props: ["PinBallScore"],
   methods: {
     active() {
       this.$emit("back");
@@ -25,7 +26,7 @@ export default {
 <style scoped>
 .descriptionBox {
   position: absolute;
-  top: 20%;
+  top: 15%;
   right: 0;
   left: 0;
   width: 80%;
@@ -44,9 +45,15 @@ h1 {
 }
 table {
   margin-top: 20px;
+  width: 100%;
+}
+tr {
+  display: flex;
+  justify-content: space-between;
 }
 td {
-  width: 200px;
+  width: 30%;
+  font-size: 24px;
 }
 button {
   display: inline-block;
@@ -58,6 +65,7 @@ button {
   width: 150px;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.6);
   background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
 }
 button:hover {
   cursor: pointer;

@@ -3,8 +3,11 @@
     <component
       :is="currentComponent[currentNumber]"
       :point="point"
+      :getPoint="getPoint"
+      :HitScore="HitScore"
       @next="addCurrentNumber"
       @again="minusCurrentNumber"
+      @mistake="mistake"
       @plusPoint10="plusPoint10"
       @plusPoint20="plusPoint20"
       @plusPoint30="plusPoint30"
@@ -24,8 +27,8 @@ export default {
     return {
       currentComponent: ["Home", "IsPlaying", "Result"],
       currentNumber: 0,
+      getPoint: 0,
       point: 0,
-      recordAll: [0, 0, 0, 0, 0],
       HitScore: [],
     };
   },
@@ -52,6 +55,7 @@ export default {
     addCurrentNumber() {
       if (this.currentNumber === 2) {
         this.point = 0;
+        this.getPoint = 0;
       }
       this.currentNumber++;
       if (this.currentNumber === this.currentComponent.length) {
@@ -64,37 +68,30 @@ export default {
     minusCurrentNumber() {
       if (this.currentNumber === 2) {
         this.point = 0;
+        this.getPoint = 0;
       }
       this.currentNumber--;
     },
+    mistake() {
+      this.getPoint = 0
+    },
     plusPoint10() {
-      this.point += 10;
+      this.getPoint = 10
+      this.point += this.getPoint;
     },
     plusPoint20() {
-      this.point += 20;
+      this.getPoint = 20
+      this.point += this.getPoint;
     },
     plusPoint30() {
-      this.point += 30;
+      this.getPoint = 30
+      this.point += this.getPoint;
     },
     plusPoint50() {
-      this.point += 50;
+      this.getPoint = 50
+      this.point += this.getPoint;
     },
     ranking() {
-      let changeRanking = false;
-      for (let i = 0; i < this.recordAll.length; i++) {
-        if (i === 0 && this.recordAll[i] <= this.point) {
-          this.changeRanking = true;
-          this.recordAll.unshift(this.point);
-          this.recordAll.pop();
-        }
-        if (this.recordAll[i] <= this.point && changeRanking === true) {
-          this.changeRanking = true;
-          this.recordAll.pop();
-          this.recordAll.splice(i, 0, this.point);
-        }
-      }
-      console.log(this.recordAll);
-
       this.HitScore.push({ score: this.point, name: this.$auth.currentUser.displayName });
 
       this.HitScore.sort((a, b) => {
@@ -118,6 +115,7 @@ export default {
   text-align: center;
   align-items: center;
   box-sizing: border-box;
+ 
 }
 .frame {
   width: 100vw;

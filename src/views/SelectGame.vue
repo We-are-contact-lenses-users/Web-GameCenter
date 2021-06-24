@@ -8,15 +8,15 @@
         </router-link>
 
         <router-link to="/puzzlegame" class="image image2">
-          <img src="" alt="パズルゲーム" />
+          <img src="@/assets/Puzzle.jpg" alt="パズルゲーム" />
         </router-link>
 
         <router-link to="/pinballgame" class="image image3">
-          <img src="" alt="ピンボールゲーム" />
+          <img src="@/assets/Pinball.jpg" alt="ピンボールゲーム" />
         </router-link>
 
         <router-link to="/hitgame" class="image image4">
-          <img src="" alt="スナイパーゲーム" />
+          <img src="@/assets/SniperGame.jpg" alt="スナイパーゲーム" />
         </router-link>
 
         <router-link to="/quizgame" class="image image5">
@@ -25,7 +25,6 @@
         <div class="image image6">
           <p>Welcome</p>
           <p>Web GameCenter</p>
-          <p>{{ user.displayName }}</p>
         </div>
       </div>
     </div>
@@ -43,29 +42,29 @@
         </div>
         <div class="game">
           <router-link to="/puzzlegame" class="gameitem gameimage">
-            <img src="" alt="パズルゲーム" />
+            <img src="@/assets/Puzzle.jpg" alt="パズルゲーム" />
           </router-link>
           <div class="gameitem gametext">
-            <h1 class="gametitle">パズルゲーム</h1>
-            <p class="gamedescription">説明</p>
+            <h1 class="gametitle">Time Attack!!</h1>
+            <p class="gamedescription">3×3のパズルゲームです！<br>早くピカチュウを揃えよう！</p>
           </div>
         </div>
         <div class="game">
           <router-link to="/pinballgame" class="gameitem gameimage">
-            <img src="" alt="ピンボールゲーム" />
+            <img src="@/assets/Pinball.jpg" alt="ピンボールゲーム" />
           </router-link>
           <div class="gameitem gametext">
-            <h1 class="gametitle">ピンボールゲーム</h1>
-            <p class="gamedescription">説明</p>
+            <h1 class="gametitle">ミニピンボール</h1>
+            <p class="gamedescription">予測不明な跳ね返り方をするボールに対応し、点数を重ね続けることはできるのか？？</p>
           </div>
         </div>
         <div class="game">
           <router-link to="/hitgame" class="gameitem gameimage">
-            <img src="" alt="スナイパーゲーム" />
+            <img src="@/assets/SniperGame.jpg" alt="スナイパーゲーム" />
           </router-link>
           <div class="gameitem gametext">
-            <h1 class="gametitle">スナイパーゲーム</h1>
-            <p class="gamedescription">説明</p>
+            <h1 class="gametitle">Sniper Game</h1>
+            <p class="gamedescription">動く的あてゲーム！<br>回数を追うごとに少しずつ変化していくよ！</p>
           </div>
         </div>
         <div class="game">
@@ -94,13 +93,12 @@ export default {
       return this.$auth.currentUser;
     },
   },
-  // mounted() {
-  //   console.log('select')
-  //   console.log(this.$auth.currentUser.displayName);
-  // }
 };
 </script>
 <style scoped>
+* {
+  font-family: 'Dancing Script', monospace;
+}
 .topDisplay {
   position: relative;
   width: 100%;
@@ -118,12 +116,13 @@ export default {
   height: 400px;
   left: 0;
   right: 0;
+  border-radius: 100px;
 }
 .top-image img {
   display: block;
-  border-radius: 100px;
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 .image {
@@ -134,6 +133,13 @@ export default {
   animation-duration: 18s;
   border-radius: 10%;
   border: 8px solid rgb(22, 21, 21);
+  overflow: hidden;
+}
+
+.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .image1 {
@@ -143,17 +149,24 @@ export default {
 
 .image2 {
   animation-delay: -3s;
-  background: rgba(189, 128, 48, 0.911);
+}
+
+.image2 img {
+  object-position: 50% 70%;
 }
 
 .image3 {
   animation-delay: -6s;
-  background: rgb(92, 30, 89);
+}
+
+.image3 img {
+  object-position: 50% 0%;
 }
 .image4 {
   animation-delay: -9s;
-
-  background: rgba(0, 255, 136, 0.945);
+}
+.image4 img {
+  object-position: 50% 80%;
 }
 .image5 {
   animation-delay: -12s;
@@ -165,9 +178,8 @@ export default {
   text-align: center;
   line-height: 60px;
   padding-top: 70px;
-}
-.image6 p:last-child {
-  letter-spacing: 2px;
+  font-size: 36px;
+  
 }
 
 @keyframes movePicture {
@@ -269,28 +281,33 @@ export default {
   height: 350px;
   width: 45%;
   background: cornflowerblue;
+  border-radius: 10%;
+  overflow: hidden;
+  border: 1px solid rgb(59, 58, 58);
 }
 
 .gameimage img {
   display: block;
   width: 100%;
   height: 100%;
-  /* background: darkgreen; */
+  object-fit: cover;
 }
 .gametext {
   width: 50%;
   height: 350px;
-  border: 2px solid white;
   color: azure;
-  /* background: darkcyan; */
 }
 
 .gametitle {
-  font-size: 24px;
+  font-size: 28px;
   padding: 40px 0;
+  color: rgb(245, 242, 73);
 }
 .gamedescription {
-  font-size: 24px;
+  width: 90%;
+  font-size: 18px;
+  line-height: 1.8;
+  letter-spacing: 1px;
 }
 /* 後々調整 */
 @media (max-width: 600px) {

@@ -18,7 +18,7 @@
     <transition tag="template" name="fade">
       <result
         @back="changeResult"
-        :recordAll="recordAll"
+        :PinBallScore="PinBallScore"
         v-if="result"
       ></result>
     </transition>
@@ -29,7 +29,6 @@
 <script>
 import BlockBack from "./BlockBack.vue";
 import description from "./Description.vue";
-// import result from "./Pinball_Result.vue";
 import result from "./Result.vue";
 export default {
   components: {
@@ -37,7 +36,7 @@ export default {
     description,
     result,
   },
-  props: ["recordAll"],
+  props: ["PinBallScore"],
   data() {
     return {
       description: false,

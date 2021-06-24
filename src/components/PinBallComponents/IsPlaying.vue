@@ -71,6 +71,9 @@ export default {
   position: relative;
   background-color: rgba(0, 0, 0, 0.2);
 }
+h2 {
+  font-size: 26px;
+}
 .description {
   position: absolute;
   top: 42%;

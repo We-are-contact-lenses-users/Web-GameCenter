@@ -72,6 +72,8 @@ export default {
   color: white;
   transition: color 1s, font-size 1s;
   cursor: pointer;
+  font-family: 'Dancing Script', monospace;
+  letter-spacing: 1px;
 }
 .menuButton:hover {
   color: rgba(248, 248, 159, 0.932);
