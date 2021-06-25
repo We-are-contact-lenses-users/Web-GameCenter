@@ -99,7 +99,7 @@ export default {
 
 .loadingDisplay {
   width: 100%;
-  height: 630px;
+  height: 100vh;
   max-width: 800px;
   position: relative;
 }

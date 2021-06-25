@@ -74,6 +74,7 @@ export default {
   cursor: pointer;
   font-family: 'Dancing Script', monospace;
   letter-spacing: 1px;
+  font-size: 30px;
 }
 .menuButton:hover {
   color: rgba(248, 248, 159, 0.932);

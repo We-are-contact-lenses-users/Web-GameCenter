@@ -41,7 +41,7 @@ export default {
       className: {
         block: "",
       },
-      isPlaying: false,
+      isPlaying: true,
       newblocks: [],
       idChecker: [],
       blocks: [
