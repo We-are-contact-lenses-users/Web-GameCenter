@@ -125,6 +125,6 @@ h2 {
   top: 5%;
   left: 0;
   right: 0;
-  height: 100%;
+  height: 600px;
 }
 </style>

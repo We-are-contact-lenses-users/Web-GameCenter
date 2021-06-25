@@ -173,9 +173,9 @@ export default {
   z-index: 2;
 }
 .title {
-  font-size: 30px;
+  font-size: 44px;
   padding: 140px 0 100px;
-  color: antiquewhite;
+  color: rgb(250, 247, 243);
 }
 .postBox {
   background: rgba(233, 232, 245, 0.178);

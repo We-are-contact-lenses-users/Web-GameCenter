@@ -1,14 +1,14 @@
 <template>
   <div id="app">
+    <img src="https://repair-master.jp/wp-content/uploads/2019/10/40223bd3fdfa498525be30966715a5e4.jpg" alt="" class="image">
     <div class="container">
       <div class="title">
-        <h1 v-if="!startFlg && endFlg == true">結果発表</h1>
-        <h1 v-else>Typing Game</h1>
-        <div class="marker"></div>
+        <h1 v-if="!startFlg && endFlg == true" class="result">結果発表</h1>
+        <h1 v-else class="toptitle animate__animated animate__flipInX">Typing Game</h1>
       </div>
       <button
         v-if="!startFlg && !endFlg"
-        class="startButton mb-20"
+        class="startButton mb-20 btn"
         @click="gameStart"
       >
         START
@@ -16,20 +16,27 @@
       <div v-if="startFlg">
         <div class="question mb-20">{{ current_question }}</div>
         <div v-if="current_question_counts == question_counts" class="clear">
-          <div>Clear!</div>
-          <button @click="gameResult">結果発表</button>
+          <div class="cleartext">Clear!</div>
+          <button @click="gameResult" class="resultbutton btn">RESULT</button>
         </div>
         <div class="typeFormWrapper mb-20">
-          <input id="typeForm" v-model="typeBox" type="text" class="typeForm" />
+          <input
+            id="typeForm"
+            v-model="typeBox"
+            type="text"
+            :class="[{ typeForm: !isCleared }, { displayinput: isCleared }]"
+          />
         </div>
         <div class="gaugeWrapper mb-20">
           <div v-bind:style="styleObject" class="gauge"></div>
         </div>
         <div>{{ current_question_counts }}/{{ question_counts }}</div>
       </div>
-      <div v-if="!startFlg && endFlg == true">
+      <div v-if="!startFlg && endFlg == true" class="resulttext">
+        <div class="animate__animated animate__zoomIn">
         ただいまの結果は{{ second }}秒でした！
-        <Button v-on:click="reset">リセット</Button>
+        </div>
+        <button v-on:click="reset" class="btn">RESET</button>
       </div>
     </div>
   </div>
@@ -58,6 +65,7 @@ export default {
       startTime: "",
       beforeTime: "",
       TypingScore: [],
+      isCleared: false,
     };
   },
   created() {
@@ -118,6 +126,11 @@ export default {
     this.question_counts = this.questions.length;
   },
   watch: {
+    current_question_counts() {
+      if (this.current_question_counts === 5) {
+        this.isCleared = !this.isCleared;
+      }
+    },
     typeBox: function (e) {
       if (e == this.current_question) {
         this.questions.splice(0, 1);
@@ -150,69 +163,92 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #app {
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
+  background: rgba(238, 244, 255, 0.61);
   font-size: 32px;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
 }
 
 #app .mb-20 {
   margin-bottom: 20px;
 }
 #app .container {
-  width: 800px;
+  width: 70%;
   margin: 0 auto;
   text-align: center;
+  max-width: 800px;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.image {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  z-index: -1;
 }
 #app .title {
   position: relative;
-  font-size: 48px;
+  padding: 150px 0;
+  font-family: 'Cinzel', serif;
 }
-#app .marker {
-  width: 100%;
-  height: 35%;
-  background-color: #a2a2a270;
+.animate__animated .animate__flipInX, .animate__animated .animate__zoomIn {
+  --animate-duration: 2s;
+}
+.toptitle {
+  font-size: 70px;
   position: absolute;
-  bottom: 5%;
-  z-index: -1;
+  left: 0;
+  right: 0;
+  z-index: 2;
 }
-#app .startButton {
+.question {
+  color: black !important;
+}
+.btn {
+  width: 200px;
+  color: black;
+  background: white;
   display: inline-block;
-  padding: 0.5em 1em;
+  padding: 20px 40px;
   text-decoration: none;
-  background: #888888; /*ボタン色*/
-  color: #555555; /*ボタン色より暗く*/
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
-  border-bottom: solid 3px #627295;
-  border-radius: 3px;
+  box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.29);
+  border-radius: 10px;
   font-weight: bold;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+  letter-spacing: 3px;
+  font-size: 22px;
+  margin-top: 80px;
+  font-family: 'Cinzel', serif;
+  font-weight: bold;
 }
-#app .startButton:active {
-  -webkit-transform: translateY(4px);
-  transform: translateY(4px);
-  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
-  border-bottom: none;
+
+.btn:active {
+  transform: translateY(3px);
+  box-shadow: none;
 }
-#app .startButton:hover {
-  opacity: 0, 7;
+.btn:hover {
+  opacity: 0.7;
 }
 #app .question {
   color: gray;
 }
 #app .clear {
-  color: #03a9f4;
+  color: #f46303;
 }
 #app .typeForm {
   text-align: center;
   outline: none;
   border: none;
   font-size: 30px;
-}
-#app .typeFormWrapper {
-  border-bottom: 1px solid gray;
+  display: inline-block;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid black;
 }
 #app .gauge {
   height: 12px;
@@ -221,5 +257,28 @@ export default {
 #app .gaugeWrapper {
   border: 1px solid;
   height: 12px;
+}
+.result {
+  font-size: 40px;
+}
+.resulttext {
+  font-size: 30px;
+  line-height: 1.6;
+  transform: translateY(-30px);
+}
+.displayinput {
+  display: none;
+}
+.clear .btn {
+  font-size: 20px;
+  padding: 10px 30px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin: 0 0 20px;
+}
+.cleartext {
+  font-weight: bold;
+  padding-bottom: 30px;
+  font-family: 'Cinzel', serif;
 }
 </style>

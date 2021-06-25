@@ -121,6 +121,7 @@ export default {
 .title {
   padding: 140px 0 100px;
   color: aliceblue;
+  font-size: 44px;
 }
 .buttons {
   list-style: none;
