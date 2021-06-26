@@ -7,7 +7,7 @@
     @toStart="next"
     @Again="again"
     :beforeTime="beforeTime"
-    :recordAll="recordAll"
+    :PuzzleScore="PuzzleScore"
     class="mainBox"
   ></component>
 </template>
@@ -30,7 +30,6 @@ export default {
       finishTime: 0,
       recordTime: 0,
       beforeTime: "-",
-      recordAll: [],
       currentNumber: 0,
       componentName: ["home", "firstGame", "result"],
       PuzzleScore: [],

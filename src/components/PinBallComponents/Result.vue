@@ -2,7 +2,7 @@
   <div class="descriptionBox">
     <h1>ランキング上位</h1>
     <table class="result">
-      <tr v-for="(record, index) in PinBallScore" :key="index">
+      <tr v-for="(record, index) in displayResult" :key="index">
         <td>第 {{ 1 + index }} 位</td>
         <td>{{ record.name }}</td>
         <td>{{ record.score }} pt</td>
@@ -20,6 +20,11 @@ export default {
       this.$emit("back");
     },
   },
+  computed: {
+    displayResult() {
+      return this.PinBallScore.slice(0, 5)
+    }
+  }
 };
 </script>
 
