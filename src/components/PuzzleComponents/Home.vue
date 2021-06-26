@@ -37,14 +37,14 @@
     </div>
     <div :class="{ whiteBox2: isActive2 }" class="whiteBoxBase2">
       <p class="resultTitle">Top 5</p>
-      <table v-if="recordAll.length !== 0" class="result">
+      <table v-if="PuzzleScore.length !== 0" class="result">
         <tr>
-          <td>date</td>
+          <td>name</td>
           <td>record</td>
         </tr>
-        <tr v-for="(record, index) in recordAll" :key="index">
-          <td>{{ record.month }}月{{ record.date }}日</td>
-          <td>{{ record.record }}</td>
+        <tr v-for="(record, index) in displayResult" :key="index">
+          <td>{{ record.name }}</td>
+          <td>{{ record.score }}秒</td>
         </tr>
       </table>
 
@@ -69,7 +69,7 @@ export default {
       isActive3: false,
     };
   },
-  props: ["beforeTime", "recordAll"],
+  props: ["beforeTime", "PuzzleScore"],
   methods: {
     start() {
       this.$emit("start");
@@ -83,6 +83,11 @@ export default {
       this.isActive3 = !this.isActive3;
     },
   },
+  computed: {
+    displayResult() {
+      return this.PuzzleScore.slice(0, 5)
+    }
+  }
 };
 </script>
 

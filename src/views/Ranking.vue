@@ -3,22 +3,86 @@
     <StarBackGround></StarBackGround>
     <div class="top-menu">
       <h1 class="title">Ranking</h1>
-      <!-- <ul class="rankings">
-        <li
-          v-for="(ranking, index) in rankings"
-          :key="index"
-          class="rankingBox"
-        >
-          <h2>{{ ranking.title }}</h2>
+      <ul class="rankings">
+        <li class="rankingBox">
+          <h2>{{ titles[0] }}</h2>
           <table>
-            <tr v-for="(rank, index2) in ranking" :key="index * 10 + index2">
+            <tr
+              v-for="(rank, index2) in allranking"
+              :key="index * 10 + index2"
+            >
               <td>{{ rank.rank }}</td>
               <td>{{ rank.person }}</td>
-              <td>{{ rank.result }}</td>
+              <td>{{ rank.result }}pt</td>
             </tr>
           </table>
         </li>
-      </ul> -->
+        <li class="rankingBox">
+          <h2>{{ titles[1] }}</h2>
+          <table>
+            <tr
+              v-for="(rank, index2) in quizgame"
+              :key="index * 10 + index2"
+            >
+              <td>{{ rank.rank }}</td>
+              <td>{{ rank.person }}</td>
+              <td>{{ rank.result }}秒</td>
+            </tr>
+          </table>
+        </li>
+        <li class="rankingBox">
+          <h2>{{ titles[2] }}</h2>
+          <table>
+            <tr
+              v-for="(rank, index2) in typinggame"
+              :key="index * 10 + index2"
+            >
+              <td>{{ rank.rank }}</td>
+              <td>{{ rank.person }}</td>
+              <td>{{ rank.result }}秒</td>
+            </tr>
+          </table>
+        </li>
+        <li class="rankingBox">
+          <h2>{{ titles[3] }}</h2>
+          <table>
+            <tr
+              v-for="(rank, index2) in pinballgame"
+              :key="index * 10 + index2"
+            >
+              <td>{{ rank.rank }}</td>
+              <td>{{ rank.person }}</td>
+              <td>{{ rank.result }}pt</td>
+            </tr>
+          </table>
+        </li>
+        <li class="rankingBox">
+          <h2>{{ titles[4] }}</h2>
+          <table>
+            <tr
+              v-for="(rank, index2) in puzzlegame"
+              :key="index * 10 + index2"
+            >
+              <td>{{ rank.rank }}</td>
+              <td>{{ rank.person }}</td>
+              <td>{{ rank.result }}秒</td>
+            </tr>
+          </table>
+        </li>
+        <li class="rankingBox">
+          <h2>{{ titles[5] }}</h2>
+          <table>
+            <tr
+              v-for="(rank, index2) in snipergame"
+              :key="index * 10 + index2"
+            >
+              <td>{{ rank.rank }}</td>
+              <td>{{ rank.person }}</td>
+              <td>{{ rank.result }}pt</td>
+            </tr>
+          </table>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -31,12 +95,20 @@ export default {
   data() {
     return {
       titles: [
-        "総合ランキング",
-        "Puzzle Game",
+        "Total",
+        "Quiz Game",
         "Typing Game",
         "Pinball Game",
-        "Quiz Game",
+        "Puzzle Game",
         "Sniper Game",
+      ],
+      rankingName: [
+        "allranking",
+        "quizgame",
+        "typinggame",
+        "pinballgame",
+        "puzzlegame",
+        "snipergame",
       ],
 
       allranking: [
@@ -308,9 +380,10 @@ export default {
   right: 0;
 }
 .title {
-  font-size: 30px;
+  font-size: 44px;
   padding: 140px 0 80px;
-  color: antiquewhite;
+  color: white;
+  font-family: 'Dancing Script', monospace;
 }
 .rankings {
   width: 92%;
@@ -335,6 +408,8 @@ ul {
 h2 {
   font-size: 34px;
   padding: 30px;
+  font-weight: bold;
+  font-family: 'Dancing Script', monospace;
 }
 table {
   width: 100%;
@@ -346,6 +421,8 @@ tr {
 }
 td {
   width: 30%;
+  font-size: 20px;
+  padding-bottom: 10px;
 }
 
 @media (max-width: 900px) {

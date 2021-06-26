@@ -43,11 +43,6 @@ export default {
           r: 5,
         },
         {
-          x: 250,
-          y: 105,
-          r: 5,
-        },
-        {
           x: 80,
           y: 125,
           r: 5,
@@ -94,7 +89,7 @@ export default {
         },
         {
           x: 250,
-          y: 160,
+          y: 100,
           r: 5,
         },
         {
@@ -115,11 +110,6 @@ export default {
         {
           x: 100,
           y: 280,
-          r: 5,
-        },
-        {
-          x: 250,
-          y: 320,
           r: 5,
         },
         {
@@ -276,11 +266,11 @@ export default {
         ) {
           if (Math.abs(this.ball.x - this.pin[i].x) >= this.pin[i].r) {
             if (this.ball.x < this.pin[i].x && this.ball.dx > 0) {
-              this.ball.dx -= 0.3;
+              this.ball.dx -= 0.2;
               this.ball.dx *= -1;
             }
             if (this.ball.x > this.pin[i].x && this.ball.dx < 0) {
-              this.ball.dx += 0.3;
+              this.ball.dx += 0.2;
               this.ball.dx *= -1;
             }
           }

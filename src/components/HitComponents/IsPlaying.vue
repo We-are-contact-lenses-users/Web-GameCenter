@@ -132,5 +132,6 @@ export default {
   right: 0;
   color: black;
   z-index: 30;
+  font-size: 40px;
 }
 </style>
