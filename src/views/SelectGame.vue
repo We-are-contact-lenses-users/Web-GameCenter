@@ -186,7 +186,7 @@ export default {
   text-align: center;
   line-height: 60px;
   padding-top: 70px;
-  font-size: 36px;
+  font-size: 44px;
 }
 
 @keyframes movePicture {
@@ -262,7 +262,8 @@ export default {
 }
 .title {
   margin: 120px 0;
-  color: antiquewhite;
+  color: white;
+  font-size: 48px;
 }
 .games {
   width: 95%;

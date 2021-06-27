@@ -67,12 +67,20 @@ export default {
   data() {
     return {
       titles: [
-        "総合ランキング",
-        "Puzzle Game",
+        "Total",
+        "Quiz Game",
         "Typing Game",
         "Pinball Game",
-        "Quiz Game",
+        "Puzzle Game",
         "Sniper Game",
+      ],
+      rankingName: [
+        "allranking",
+        "quizgame",
+        "typinggame",
+        "pinballgame",
+        "puzzlegame",
+        "snipergame",
       ],
 
       allranking: [
@@ -344,9 +352,10 @@ export default {
   right: 0;
 }
 .title {
-  font-size: 30px;
+  font-size: 44px;
   padding: 140px 0 80px;
-  color: antiquewhite;
+  color: white;
+  font-family: "Dancing Script", monospace;
 }
 .rankings {
   width: 92%;
@@ -371,6 +380,8 @@ ul {
 h2 {
   font-size: 34px;
   padding: 30px;
+  font-weight: bold;
+  font-family: "Dancing Script", monospace;
 }
 table {
   width: 100%;
@@ -382,6 +393,8 @@ tr {
 }
 td {
   width: 30%;
+  font-size: 20px;
+  padding-bottom: 10px;
 }
 
 @media (max-width: 900px) {

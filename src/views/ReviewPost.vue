@@ -230,6 +230,7 @@ export default {
 }
 .flexitem {
   width: 40%;
+  padding-bottom: 20px;
 }
 .form input {
   display: inline-block;

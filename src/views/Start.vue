@@ -76,7 +76,7 @@ export default {
       ctx.strokeStyle = "#FFFF66";
       ctx.font = "bold 80px serif";
       ctx.strokeText("Web", 200, 170);
-      ctx.strokeText("Game Center", 50, 260);
+      ctx.strokeText("Game Center", 50, 280);
     },
   },
   created() {
@@ -282,6 +282,7 @@ span:nth-child(10) {
   width: 600px;
   height: 400px;
   max-width: 100%;
+  transform: translateY(-50px);
 }
 .flex-item2 {
   flex: 1;
@@ -335,6 +336,7 @@ span:nth-child(10) {
   }
   .flex-item1 {
     height: 40%;
+    transform: translateY(0px);
   }
   .flex-item2 {
     height: 30%;

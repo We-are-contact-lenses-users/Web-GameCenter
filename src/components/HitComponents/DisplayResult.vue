@@ -2,7 +2,7 @@
   <div class="descriptionBox">
     <h1>Top players</h1>
     <table class="result">
-      <tr v-for="(record, index) in HitScore" :key="index">
+      <tr v-for="(record, index) in displayResult" :key="index">
         <td>第 {{ 1 + index }} 位</td>
         <td>{{ record.name }} </td>
         <td>{{ record.score }} pt</td>
@@ -20,9 +20,11 @@ export default {
       this.$emit("back");
     },
   },
-  mounted() {
-    console.log(this.HitScore);
-  },
+  computed: {
+    displayResult() {
+      return this.HitScore.slice(0, 5)
+    }
+  }
 };
 </script>
 
