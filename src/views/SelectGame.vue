@@ -4,7 +4,7 @@
     <div class="firstDisplay">
       <div class="top-image">
         <router-link to="/typinggame" class="image image1">
-          <img src="" alt="タイピングゲーム" />
+          <img src="@/assets/Typing.jpg" alt="タイピングゲーム" />
         </router-link>
 
         <router-link to="/puzzlegame" class="image image2">
@@ -20,7 +20,7 @@
         </router-link>
 
         <router-link to="/quizgame" class="image image5">
-          <img src="" alt="クイズゲーム" />
+          <img src="@/assets/Quiz.jpg" alt="クイズゲーム" />
         </router-link>
         <div class="image image6">
           <p>Welcome</p>
@@ -33,11 +33,11 @@
       <div class="games">
         <div class="game">
           <router-link to="/typinggame" class="gameitem gameimage">
-            <img src="" alt="タイピングゲーム" />
+            <img src="@/assets/Typing.jpg" alt="タイピングゲーム" />
           </router-link>
           <div class="gameitem gametext">
             <h1 class="gametitle">タイピングゲーム</h1>
-            <p class="gamedescription">説明</p>
+            <p class="gamedescription">5つの英単語を早く入力しよう！</p>
           </div>
         </div>
         <div class="game">
@@ -46,7 +46,9 @@
           </router-link>
           <div class="gameitem gametext">
             <h1 class="gametitle">Time Attack!!</h1>
-            <p class="gamedescription">3×3のパズルゲームです！<br>早くピカチュウを揃えよう！</p>
+            <p class="gamedescription">
+              3×3のパズルゲームです！<br />早くピカチュウを揃えよう！
+            </p>
           </div>
         </div>
         <div class="game">
@@ -55,7 +57,9 @@
           </router-link>
           <div class="gameitem gametext">
             <h1 class="gametitle">ミニピンボール</h1>
-            <p class="gamedescription">予測不明な跳ね返り方をするボールに対応し、点数を重ね続けることはできるのか？？</p>
+            <p class="gamedescription">
+              予測不明な跳ね返り方をするボールに対応し、点数を重ね続けることはできるのか？？
+            </p>
           </div>
         </div>
         <div class="game">
@@ -64,16 +68,20 @@
           </router-link>
           <div class="gameitem gametext">
             <h1 class="gametitle">Sniper Game</h1>
-            <p class="gamedescription">動く的あてゲーム！<br>回数を追うごとに少しずつ変化していくよ！</p>
+            <p class="gamedescription">
+              動く的あてゲーム！<br />回数を追うごとに少しずつ変化していくよ！
+            </p>
           </div>
         </div>
         <div class="game">
           <router-link to="/quizgame" class="gameitem gameimage">
-            <img src="" alt="クイズゲーム" />
+            <img src="@/assets/Quiz.jpg" alt="クイズゲーム" />
           </router-link>
           <div class="gameitem gametext">
             <h1 class="gametitle">クイズゲーム</h1>
-            <p class="gamedescription">説明</p>
+            <p class="gamedescription">
+              ランダムに出てくる問題を正確にかつ、素早く答えられるのか？
+            </p>
           </div>
         </div>
       </div>
@@ -97,7 +105,7 @@ export default {
 </script>
 <style scoped>
 * {
-  font-family: 'Dancing Script', monospace;
+  font-family: "Dancing Script", monospace;
 }
 .topDisplay {
   position: relative;
@@ -179,7 +187,6 @@ export default {
   line-height: 60px;
   padding-top: 70px;
   font-size: 44px;
-  
 }
 
 @keyframes movePicture {
