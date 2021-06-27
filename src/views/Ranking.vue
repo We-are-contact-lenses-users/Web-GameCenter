@@ -3,22 +3,58 @@
     <StarBackGround></StarBackGround>
     <div class="top-menu">
       <h1 class="title">Ranking</h1>
-      <!-- <ul class="rankings">
-        <li
-          v-for="(ranking, index) in rankings"
-          :key="index"
-          class="rankingBox"
-        >
-          <h2>{{ ranking.title }}</h2>
+      <ul class="rankings">
+        <li class="rankingBox">
+          <h2>QuizGame</h2>
           <table>
-            <tr v-for="(rank, index2) in ranking" :key="index * 10 + index2">
-              <td>{{ rank.rank }}</td>
-              <td>{{ rank.person }}</td>
-              <td>{{ rank.result }}</td>
+            <tr v-for="ranking in quizgame" :key="ranking">
+              <td>{{ ranking.rank }}</td>
+              <td>{{ ranking.person }}</td>
+              <td>{{ ranking.result }}</td>
             </tr>
           </table>
         </li>
-      </ul> -->
+        <li class="rankingBox">
+          <h2>TypingGame</h2>
+          <table>
+            <tr v-for="ranking in typinggame" :key="ranking">
+              <td>{{ ranking.rank }}</td>
+              <td>{{ ranking.person }}</td>
+              <td>{{ ranking.result }}</td>
+            </tr>
+          </table>
+        </li>
+        <li class="rankingBox">
+          <h2>PinBallGame</h2>
+          <table>
+            <tr v-for="ranking in pinballgame" :key="ranking">
+              <td>{{ ranking.rank }}</td>
+              <td>{{ ranking.person }}</td>
+              <td>{{ ranking.result }}</td>
+            </tr>
+          </table>
+        </li>
+        <li class="rankingBox">
+          <h2>PuzzleGame</h2>
+          <table>
+            <tr v-for="ranking in puzzlegame" :key="ranking">
+              <td>{{ ranking.rank }}</td>
+              <td>{{ ranking.person }}</td>
+              <td>{{ ranking.result }}</td>
+            </tr>
+          </table>
+        </li>
+        <li class="rankingBox">
+          <h2>SniperGame</h2>
+          <table>
+            <tr v-for="ranking in snipergame" :key="ranking">
+              <td>{{ ranking.rank }}</td>
+              <td>{{ ranking.person }}</td>
+              <td>{{ ranking.result }}</td>
+            </tr>
+          </table>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
